@@ -1,0 +1,1438 @@
+[23/07/20 15:27:32] [conf.py:  210]: PyTorch Version: torch=1.10.0, cuda=11.3, cudnn=8200
+[23/07/20 15:27:32] [conf.py:  212]: BN:
+  EPS: 1e-05
+  MOM: 0.1
+CKPT_DIR: ./ckpt
+CORRUPTION:
+  DATASET: imagenet
+  NUM_EX: 5000
+  SEVERITY: [5]
+  TYPE: ['brightness', 'pixelate', 'gaussian_noise', 'motion_blur', 'zoom_blur', 'glass_blur', 'impulse_noise', 'jpeg_compression', 'defocus_blur', 'elastic_transform', 'shot_noise', 'frost', 'snow', 'fog', 'contrast']
+CUDNN:
+  BENCHMARK: True
+DATA_DIR: /root/datasets
+DESC: 
+LOG_DEST: cotta0_230720_152732.txt
+LOG_TIME: 230720_152732
+MODEL:
+  ADAPTATION: cotta
+  ARCH: Standard_R50
+  EPISODIC: False
+OPTIM:
+  BETA: 0.9
+  DAMPENING: 0.0
+  LR: 0.01
+  METHOD: SGD
+  MOMENTUM: 0.9
+  NESTEROV: True
+  STEPS: 1
+  WD: 0.0
+RNG_SEED: 1
+SAVE_DIR: ./output
+TEST:
+  BATCH_SIZE: 64
+[23/07/20 15:27:42] [imagenetc.py:   38]: test-time adaptation: CoTTA
+[23/07/20 15:27:42] [imagenetc.py:  158]: model for adaptation: Sequential(
+  (normalize): ImageNormalizer()
+  (model): ResNet(
+    (conv1): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+    (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+    (relu): ReLU(inplace=True)
+    (maxpool): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (layer1): Sequential(
+      (0): Bottleneck(
+        (conv1): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu): ReLU(inplace=True)
+        (downsample): Sequential(
+          (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        )
+      )
+      (1): Bottleneck(
+        (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu): ReLU(inplace=True)
+      )
+      (2): Bottleneck(
+        (conv1): Conv2d(256, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv3): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu): ReLU(inplace=True)
+      )
+    )
+    (layer2): Sequential(
+      (0): Bottleneck(
+        (conv1): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu): ReLU(inplace=True)
+        (downsample): Sequential(
+          (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        )
+      )
+      (1): Bottleneck(
+        (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu): ReLU(inplace=True)
+      )
+      (2): Bottleneck(
+        (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu): ReLU(inplace=True)
+      )
+      (3): Bottleneck(
+        (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv3): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu): ReLU(inplace=True)
+      )
+    )
+    (layer3): Sequential(
+      (0): Bottleneck(
+        (conv1): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu): ReLU(inplace=True)
+        (downsample): Sequential(
+          (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        )
+      )
+      (1): Bottleneck(
+        (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu): ReLU(inplace=True)
+      )
+      (2): Bottleneck(
+        (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu): ReLU(inplace=True)
+      )
+      (3): Bottleneck(
+        (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu): ReLU(inplace=True)
+      )
+      (4): Bottleneck(
+        (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu): ReLU(inplace=True)
+      )
+      (5): Bottleneck(
+        (conv1): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv3): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu): ReLU(inplace=True)
+      )
+    )
+    (layer4): Sequential(
+      (0): Bottleneck(
+        (conv1): Conv2d(1024, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu): ReLU(inplace=True)
+        (downsample): Sequential(
+          (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(2, 2), bias=False)
+          (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        )
+      )
+      (1): Bottleneck(
+        (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu): ReLU(inplace=True)
+      )
+      (2): Bottleneck(
+        (conv1): Conv2d(2048, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (conv3): Conv2d(512, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn3): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=False)
+        (relu): ReLU(inplace=True)
+      )
+    )
+    (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+    (fc): Linear(in_features=2048, out_features=1000, bias=True)
+  )
+)
+[23/07/20 15:27:42] [imagenetc.py:  159]: params for adaptation: ['model.conv1.weight', 'model.bn1.weight', 'model.bn1.bias', 'model.layer1.0.conv1.weight', 'model.layer1.0.bn1.weight', 'model.layer1.0.bn1.bias', 'model.layer1.0.conv2.weight', 'model.layer1.0.bn2.weight', 'model.layer1.0.bn2.bias', 'model.layer1.0.conv3.weight', 'model.layer1.0.bn3.weight', 'model.layer1.0.bn3.bias', 'model.layer1.0.downsample.0.weight', 'model.layer1.0.downsample.1.weight', 'model.layer1.0.downsample.1.bias', 'model.layer1.1.conv1.weight', 'model.layer1.1.bn1.weight', 'model.layer1.1.bn1.bias', 'model.layer1.1.conv2.weight', 'model.layer1.1.bn2.weight', 'model.layer1.1.bn2.bias', 'model.layer1.1.conv3.weight', 'model.layer1.1.bn3.weight', 'model.layer1.1.bn3.bias', 'model.layer1.2.conv1.weight', 'model.layer1.2.bn1.weight', 'model.layer1.2.bn1.bias', 'model.layer1.2.conv2.weight', 'model.layer1.2.bn2.weight', 'model.layer1.2.bn2.bias', 'model.layer1.2.conv3.weight', 'model.layer1.2.bn3.weight', 'model.layer1.2.bn3.bias', 'model.layer2.0.conv1.weight', 'model.layer2.0.bn1.weight', 'model.layer2.0.bn1.bias', 'model.layer2.0.conv2.weight', 'model.layer2.0.bn2.weight', 'model.layer2.0.bn2.bias', 'model.layer2.0.conv3.weight', 'model.layer2.0.bn3.weight', 'model.layer2.0.bn3.bias', 'model.layer2.0.downsample.0.weight', 'model.layer2.0.downsample.1.weight', 'model.layer2.0.downsample.1.bias', 'model.layer2.1.conv1.weight', 'model.layer2.1.bn1.weight', 'model.layer2.1.bn1.bias', 'model.layer2.1.conv2.weight', 'model.layer2.1.bn2.weight', 'model.layer2.1.bn2.bias', 'model.layer2.1.conv3.weight', 'model.layer2.1.bn3.weight', 'model.layer2.1.bn3.bias', 'model.layer2.2.conv1.weight', 'model.layer2.2.bn1.weight', 'model.layer2.2.bn1.bias', 'model.layer2.2.conv2.weight', 'model.layer2.2.bn2.weight', 'model.layer2.2.bn2.bias', 'model.layer2.2.conv3.weight', 'model.layer2.2.bn3.weight', 'model.layer2.2.bn3.bias', 'model.layer2.3.conv1.weight', 'model.layer2.3.bn1.weight', 'model.layer2.3.bn1.bias', 'model.layer2.3.conv2.weight', 'model.layer2.3.bn2.weight', 'model.layer2.3.bn2.bias', 'model.layer2.3.conv3.weight', 'model.layer2.3.bn3.weight', 'model.layer2.3.bn3.bias', 'model.layer3.0.conv1.weight', 'model.layer3.0.bn1.weight', 'model.layer3.0.bn1.bias', 'model.layer3.0.conv2.weight', 'model.layer3.0.bn2.weight', 'model.layer3.0.bn2.bias', 'model.layer3.0.conv3.weight', 'model.layer3.0.bn3.weight', 'model.layer3.0.bn3.bias', 'model.layer3.0.downsample.0.weight', 'model.layer3.0.downsample.1.weight', 'model.layer3.0.downsample.1.bias', 'model.layer3.1.conv1.weight', 'model.layer3.1.bn1.weight', 'model.layer3.1.bn1.bias', 'model.layer3.1.conv2.weight', 'model.layer3.1.bn2.weight', 'model.layer3.1.bn2.bias', 'model.layer3.1.conv3.weight', 'model.layer3.1.bn3.weight', 'model.layer3.1.bn3.bias', 'model.layer3.2.conv1.weight', 'model.layer3.2.bn1.weight', 'model.layer3.2.bn1.bias', 'model.layer3.2.conv2.weight', 'model.layer3.2.bn2.weight', 'model.layer3.2.bn2.bias', 'model.layer3.2.conv3.weight', 'model.layer3.2.bn3.weight', 'model.layer3.2.bn3.bias', 'model.layer3.3.conv1.weight', 'model.layer3.3.bn1.weight', 'model.layer3.3.bn1.bias', 'model.layer3.3.conv2.weight', 'model.layer3.3.bn2.weight', 'model.layer3.3.bn2.bias', 'model.layer3.3.conv3.weight', 'model.layer3.3.bn3.weight', 'model.layer3.3.bn3.bias', 'model.layer3.4.conv1.weight', 'model.layer3.4.bn1.weight', 'model.layer3.4.bn1.bias', 'model.layer3.4.conv2.weight', 'model.layer3.4.bn2.weight', 'model.layer3.4.bn2.bias', 'model.layer3.4.conv3.weight', 'model.layer3.4.bn3.weight', 'model.layer3.4.bn3.bias', 'model.layer3.5.conv1.weight', 'model.layer3.5.bn1.weight', 'model.layer3.5.bn1.bias', 'model.layer3.5.conv2.weight', 'model.layer3.5.bn2.weight', 'model.layer3.5.bn2.bias', 'model.layer3.5.conv3.weight', 'model.layer3.5.bn3.weight', 'model.layer3.5.bn3.bias', 'model.layer4.0.conv1.weight', 'model.layer4.0.bn1.weight', 'model.layer4.0.bn1.bias', 'model.layer4.0.conv2.weight', 'model.layer4.0.bn2.weight', 'model.layer4.0.bn2.bias', 'model.layer4.0.conv3.weight', 'model.layer4.0.bn3.weight', 'model.layer4.0.bn3.bias', 'model.layer4.0.downsample.0.weight', 'model.layer4.0.downsample.1.weight', 'model.layer4.0.downsample.1.bias', 'model.layer4.1.conv1.weight', 'model.layer4.1.bn1.weight', 'model.layer4.1.bn1.bias', 'model.layer4.1.conv2.weight', 'model.layer4.1.bn2.weight', 'model.layer4.1.bn2.bias', 'model.layer4.1.conv3.weight', 'model.layer4.1.bn3.weight', 'model.layer4.1.bn3.bias', 'model.layer4.2.conv1.weight', 'model.layer4.2.bn1.weight', 'model.layer4.2.bn1.bias', 'model.layer4.2.conv2.weight', 'model.layer4.2.bn2.weight', 'model.layer4.2.bn2.bias', 'model.layer4.2.conv3.weight', 'model.layer4.2.bn3.weight', 'model.layer4.2.bn3.bias', 'model.fc.weight', 'model.fc.bias']
+[23/07/20 15:27:42] [imagenetc.py:  160]: optimizer for adaptation: SGD (
+Parameter Group 0
+    dampening: 0
+    lr: 0.01
+    momentum: 0.9
+    nesterov: True
+    weight_decay: 0.0
+)
+[23/07/20 15:27:44] [imagenetc.py:   49]: resetting model
+[23/07/20 15:28:03] [cotta.py:  110]: anchor mean :  68.02%
+[23/07/20 15:28:07] [cotta.py:  110]: anchor mean :  62.45%
+[23/07/20 15:28:09] [cotta.py:  110]: anchor mean :  56.83%
+[23/07/20 15:28:11] [cotta.py:  110]: anchor mean :  62.90%
+[23/07/20 15:28:13] [cotta.py:  110]: anchor mean :  67.64%
+[23/07/20 15:28:14] [cotta.py:  110]: anchor mean :  59.79%
+[23/07/20 15:28:16] [cotta.py:  110]: anchor mean :  65.31%
+[23/07/20 15:28:17] [cotta.py:  110]: anchor mean :  63.76%
+[23/07/20 15:28:19] [cotta.py:  110]: anchor mean :  62.22%
+[23/07/20 15:28:21] [cotta.py:  110]: anchor mean :  71.91%
+[23/07/20 15:28:22] [cotta.py:  110]: anchor mean :  55.07%
+[23/07/20 15:28:24] [cotta.py:  110]: anchor mean :  66.54%
+[23/07/20 15:28:25] [cotta.py:  110]: anchor mean :  60.63%
+[23/07/20 15:28:27] [cotta.py:  110]: anchor mean :  59.25%
+[23/07/20 15:28:28] [cotta.py:  110]: anchor mean :  60.30%
+[23/07/20 15:28:30] [cotta.py:  110]: anchor mean :  62.10%
+[23/07/20 15:28:31] [cotta.py:  110]: anchor mean :  63.80%
+[23/07/20 15:28:33] [cotta.py:  110]: anchor mean :  64.05%
+[23/07/20 15:28:34] [cotta.py:  110]: anchor mean :  69.41%
+[23/07/20 15:28:36] [cotta.py:  110]: anchor mean :  71.53%
+[23/07/20 15:28:37] [cotta.py:  110]: anchor mean :  69.13%
+[23/07/20 15:28:39] [cotta.py:  110]: anchor mean :  60.24%
+[23/07/20 15:28:40] [cotta.py:  110]: anchor mean :  65.43%
+[23/07/20 15:28:42] [cotta.py:  110]: anchor mean :  55.82%
+[23/07/20 15:28:43] [cotta.py:  110]: anchor mean :  60.27%
+[23/07/20 15:28:45] [cotta.py:  110]: anchor mean :  66.50%
+[23/07/20 15:28:47] [cotta.py:  110]: anchor mean :  65.33%
+[23/07/20 15:28:48] [cotta.py:  110]: anchor mean :  63.09%
+[23/07/20 15:28:50] [cotta.py:  110]: anchor mean :  65.66%
+[23/07/20 15:28:51] [cotta.py:  110]: anchor mean :  65.67%
+[23/07/20 15:28:53] [cotta.py:  110]: anchor mean :  63.17%
+[23/07/20 15:28:54] [cotta.py:  110]: anchor mean :  64.04%
+[23/07/20 15:28:56] [cotta.py:  110]: anchor mean :  69.38%
+[23/07/20 15:28:57] [cotta.py:  110]: anchor mean :  58.93%
+[23/07/20 15:28:59] [cotta.py:  110]: anchor mean :  66.86%
+[23/07/20 15:29:00] [cotta.py:  110]: anchor mean :  56.95%
+[23/07/20 15:29:02] [cotta.py:  110]: anchor mean :  58.44%
+[23/07/20 15:29:03] [cotta.py:  110]: anchor mean :  61.96%
+[23/07/20 15:29:05] [cotta.py:  110]: anchor mean :  60.70%
+[23/07/20 15:29:07] [cotta.py:  110]: anchor mean :  61.33%
+[23/07/20 15:29:09] [cotta.py:  110]: anchor mean :  69.17%
+[23/07/20 15:29:11] [cotta.py:  110]: anchor mean :  67.78%
+[23/07/20 15:29:14] [cotta.py:  110]: anchor mean :  66.15%
+[23/07/20 15:29:16] [cotta.py:  110]: anchor mean :  69.17%
+[23/07/20 15:29:17] [cotta.py:  110]: anchor mean :  64.38%
+[23/07/20 15:29:19] [cotta.py:  110]: anchor mean :  62.03%
+[23/07/20 15:29:20] [cotta.py:  110]: anchor mean :  60.81%
+[23/07/20 15:29:22] [cotta.py:  110]: anchor mean :  63.84%
+[23/07/20 15:29:23] [cotta.py:  110]: anchor mean :  61.97%
+[23/07/20 15:29:25] [cotta.py:  110]: anchor mean :  58.64%
+[23/07/20 15:29:26] [cotta.py:  110]: anchor mean :  69.45%
+[23/07/20 15:29:28] [cotta.py:  110]: anchor mean :  61.53%
+[23/07/20 15:29:29] [cotta.py:  110]: anchor mean :  58.35%
+[23/07/20 15:29:31] [cotta.py:  110]: anchor mean :  66.26%
+[23/07/20 15:29:32] [cotta.py:  110]: anchor mean :  65.75%
+[23/07/20 15:29:34] [cotta.py:  110]: anchor mean :  69.78%
+[23/07/20 15:29:35] [cotta.py:  110]: anchor mean :  67.25%
+[23/07/20 15:29:37] [cotta.py:  110]: anchor mean :  70.21%
+[23/07/20 15:29:38] [cotta.py:  110]: anchor mean :  60.10%
+[23/07/20 15:29:40] [cotta.py:  110]: anchor mean :  55.18%
+[23/07/20 15:29:41] [cotta.py:  110]: anchor mean :  64.24%
+[23/07/20 15:29:43] [cotta.py:  110]: anchor mean :  60.96%
+[23/07/20 15:29:44] [cotta.py:  110]: anchor mean :  61.55%
+[23/07/20 15:29:46] [cotta.py:  110]: anchor mean :  63.09%
+[23/07/20 15:29:47] [cotta.py:  110]: anchor mean :  61.11%
+[23/07/20 15:29:49] [cotta.py:  110]: anchor mean :  68.36%
+[23/07/20 15:29:50] [cotta.py:  110]: anchor mean :  65.73%
+[23/07/20 15:29:52] [cotta.py:  110]: anchor mean :  70.12%
+[23/07/20 15:29:53] [cotta.py:  110]: anchor mean :  63.05%
+[23/07/20 15:29:55] [cotta.py:  110]: anchor mean :  66.45%
+[23/07/20 15:29:56] [cotta.py:  110]: anchor mean :  64.69%
+[23/07/20 15:29:58] [cotta.py:  110]: anchor mean :  64.75%
+[23/07/20 15:29:59] [cotta.py:  110]: anchor mean :  64.00%
+[23/07/20 15:30:01] [cotta.py:  110]: anchor mean :  69.01%
+[23/07/20 15:30:02] [cotta.py:  110]: anchor mean :  69.39%
+[23/07/20 15:30:04] [cotta.py:  110]: anchor mean :  66.16%
+[23/07/20 15:30:05] [cotta.py:  110]: anchor mean :  73.56%
+[23/07/20 15:30:07] [cotta.py:  110]: anchor mean :  58.62%
+[23/07/20 15:30:10] [cotta.py:  110]: anchor mean :  39.09%
+[23/07/20 15:30:11] [imagenetc.py:   60]: error % [brightness5]: 35.88%
+[23/07/20 15:30:11] [imagenetc.py:   51]: not resetting model
+[23/07/20 15:30:27] [cotta.py:  110]: anchor mean :  40.79%
+[23/07/20 15:30:29] [cotta.py:  110]: anchor mean :  43.92%
+[23/07/20 15:30:30] [cotta.py:  110]: anchor mean :  46.18%
+[23/07/20 15:30:32] [cotta.py:  110]: anchor mean :  38.05%
+[23/07/20 15:30:33] [cotta.py:  110]: anchor mean :  46.69%
+[23/07/20 15:30:35] [cotta.py:  110]: anchor mean :  36.60%
+[23/07/20 15:30:37] [cotta.py:  110]: anchor mean :  42.22%
+[23/07/20 15:30:38] [cotta.py:  110]: anchor mean :  38.13%
+[23/07/20 15:30:40] [cotta.py:  110]: anchor mean :  43.02%
+[23/07/20 15:30:41] [cotta.py:  110]: anchor mean :  48.51%
+[23/07/20 15:30:43] [cotta.py:  110]: anchor mean :  37.88%
+[23/07/20 15:30:44] [cotta.py:  110]: anchor mean :  43.98%
+[23/07/20 15:30:45] [cotta.py:  110]: anchor mean :  36.40%
+[23/07/20 15:30:47] [cotta.py:  110]: anchor mean :  44.76%
+[23/07/20 15:30:49] [cotta.py:  110]: anchor mean :  37.66%
+[23/07/20 15:30:50] [cotta.py:  110]: anchor mean :  30.82%
+[23/07/20 15:30:52] [cotta.py:  110]: anchor mean :  42.84%
+[23/07/20 15:30:53] [cotta.py:  110]: anchor mean :  34.15%
+[23/07/20 15:30:55] [cotta.py:  110]: anchor mean :  48.21%
+[23/07/20 15:30:56] [cotta.py:  110]: anchor mean :  43.34%
+[23/07/20 15:30:58] [cotta.py:  110]: anchor mean :  44.22%
+[23/07/20 15:30:59] [cotta.py:  110]: anchor mean :  43.71%
+[23/07/20 15:31:01] [cotta.py:  110]: anchor mean :  39.62%
+[23/07/20 15:31:02] [cotta.py:  110]: anchor mean :  36.87%
+[23/07/20 15:31:04] [cotta.py:  110]: anchor mean :  38.45%
+[23/07/20 15:31:05] [cotta.py:  110]: anchor mean :  39.88%
+[23/07/20 15:31:07] [cotta.py:  110]: anchor mean :  41.79%
+[23/07/20 15:31:08] [cotta.py:  110]: anchor mean :  36.54%
+[23/07/20 15:31:10] [cotta.py:  110]: anchor mean :  42.66%
+[23/07/20 15:31:11] [cotta.py:  110]: anchor mean :  33.48%
+[23/07/20 15:31:13] [cotta.py:  110]: anchor mean :  42.56%
+[23/07/20 15:31:14] [cotta.py:  110]: anchor mean :  43.95%
+[23/07/20 15:31:16] [cotta.py:  110]: anchor mean :  50.12%
+[23/07/20 15:31:17] [cotta.py:  110]: anchor mean :  39.10%
+[23/07/20 15:31:19] [cotta.py:  110]: anchor mean :  45.74%
+[23/07/20 15:31:20] [cotta.py:  110]: anchor mean :  40.81%
+[23/07/20 15:31:22] [cotta.py:  110]: anchor mean :  39.12%
+[23/07/20 15:31:23] [cotta.py:  110]: anchor mean :  32.46%
+[23/07/20 15:31:25] [cotta.py:  110]: anchor mean :  33.76%
+[23/07/20 15:31:26] [cotta.py:  110]: anchor mean :  36.01%
+[23/07/20 15:31:28] [cotta.py:  110]: anchor mean :  43.25%
+[23/07/20 15:31:29] [cotta.py:  110]: anchor mean :  43.82%
+[23/07/20 15:31:31] [cotta.py:  110]: anchor mean :  42.85%
+[23/07/20 15:31:32] [cotta.py:  110]: anchor mean :  40.30%
+[23/07/20 15:31:34] [cotta.py:  110]: anchor mean :  44.05%
+[23/07/20 15:31:35] [cotta.py:  110]: anchor mean :  38.25%
+[23/07/20 15:31:37] [cotta.py:  110]: anchor mean :  36.83%
+[23/07/20 15:31:38] [cotta.py:  110]: anchor mean :  48.38%
+[23/07/20 15:31:40] [cotta.py:  110]: anchor mean :  39.29%
+[23/07/20 15:31:41] [cotta.py:  110]: anchor mean :  34.80%
+[23/07/20 15:31:43] [cotta.py:  110]: anchor mean :  44.55%
+[23/07/20 15:31:44] [cotta.py:  110]: anchor mean :  38.42%
+[23/07/20 15:31:46] [cotta.py:  110]: anchor mean :  38.30%
+[23/07/20 15:31:47] [cotta.py:  110]: anchor mean :  38.04%
+[23/07/20 15:31:49] [cotta.py:  110]: anchor mean :  48.25%
+[23/07/20 15:31:50] [cotta.py:  110]: anchor mean :  47.39%
+[23/07/20 15:31:52] [cotta.py:  110]: anchor mean :  41.20%
+[23/07/20 15:31:53] [cotta.py:  110]: anchor mean :  42.82%
+[23/07/20 15:31:55] [cotta.py:  110]: anchor mean :  39.72%
+[23/07/20 15:31:56] [cotta.py:  110]: anchor mean :  34.00%
+[23/07/20 15:31:58] [cotta.py:  110]: anchor mean :  36.90%
+[23/07/20 15:31:59] [cotta.py:  110]: anchor mean :  36.97%
+[23/07/20 15:32:01] [cotta.py:  110]: anchor mean :  40.33%
+[23/07/20 15:32:02] [cotta.py:  110]: anchor mean :  44.01%
+[23/07/20 15:32:04] [cotta.py:  110]: anchor mean :  40.22%
+[23/07/20 15:32:05] [cotta.py:  110]: anchor mean :  42.86%
+[23/07/20 15:32:07] [cotta.py:  110]: anchor mean :  46.62%
+[23/07/20 15:32:08] [cotta.py:  110]: anchor mean :  43.00%
+[23/07/20 15:32:10] [cotta.py:  110]: anchor mean :  42.41%
+[23/07/20 15:32:11] [cotta.py:  110]: anchor mean :  41.00%
+[23/07/20 15:32:13] [cotta.py:  110]: anchor mean :  37.91%
+[23/07/20 15:32:14] [cotta.py:  110]: anchor mean :  40.49%
+[23/07/20 15:32:16] [cotta.py:  110]: anchor mean :  38.77%
+[23/07/20 15:32:17] [cotta.py:  110]: anchor mean :  42.81%
+[23/07/20 15:32:19] [cotta.py:  110]: anchor mean :  43.22%
+[23/07/20 15:32:20] [cotta.py:  110]: anchor mean :  49.89%
+[23/07/20 15:32:22] [cotta.py:  110]: anchor mean :  40.28%
+[23/07/20 15:32:24] [cotta.py:  110]: anchor mean :  38.93%
+[23/07/20 15:32:26] [cotta.py:  110]: anchor mean :  25.18%
+[23/07/20 15:32:27] [imagenetc.py:   60]: error % [pixelate5]: 52.14%
+[23/07/20 15:32:27] [imagenetc.py:   51]: not resetting model
+[23/07/20 15:32:47] [cotta.py:  110]: anchor mean :  14.16%
+[23/07/20 15:32:48] [cotta.py:  110]: anchor mean :  13.53%
+[23/07/20 15:32:50] [cotta.py:  110]: anchor mean :  15.81%
+[23/07/20 15:32:51] [cotta.py:  110]: anchor mean :  17.49%
+[23/07/20 15:32:53] [cotta.py:  110]: anchor mean :  13.45%
+[23/07/20 15:32:54] [cotta.py:  110]: anchor mean :  19.76%
+[23/07/20 15:32:56] [cotta.py:  110]: anchor mean :  14.02%
+[23/07/20 15:32:57] [cotta.py:  110]: anchor mean :  12.04%
+[23/07/20 15:32:59] [cotta.py:  110]: anchor mean :  15.08%
+[23/07/20 15:33:00] [cotta.py:  110]: anchor mean :  13.68%
+[23/07/20 15:33:02] [cotta.py:  110]: anchor mean :  13.29%
+[23/07/20 15:33:03] [cotta.py:  110]: anchor mean :  14.68%
+[23/07/20 15:33:05] [cotta.py:  110]: anchor mean :  10.95%
+[23/07/20 15:33:06] [cotta.py:  110]: anchor mean :  13.04%
+[23/07/20 15:33:08] [cotta.py:  110]: anchor mean :  15.25%
+[23/07/20 15:33:09] [cotta.py:  110]: anchor mean :  12.86%
+[23/07/20 15:33:11] [cotta.py:  110]: anchor mean :  13.17%
+[23/07/20 15:33:12] [cotta.py:  110]: anchor mean :  15.44%
+[23/07/20 15:33:14] [cotta.py:  110]: anchor mean :  17.60%
+[23/07/20 15:33:15] [cotta.py:  110]: anchor mean :  16.28%
+[23/07/20 15:33:17] [cotta.py:  110]: anchor mean :  12.89%
+[23/07/20 15:33:18] [cotta.py:  110]: anchor mean :  16.44%
+[23/07/20 15:33:20] [cotta.py:  110]: anchor mean :  11.53%
+[23/07/20 15:33:21] [cotta.py:  110]: anchor mean :  14.51%
+[23/07/20 15:33:23] [cotta.py:  110]: anchor mean :  17.90%
+[23/07/20 15:33:24] [cotta.py:  110]: anchor mean :  12.91%
+[23/07/20 15:33:26] [cotta.py:  110]: anchor mean :  15.90%
+[23/07/20 15:33:27] [cotta.py:  110]: anchor mean :  14.11%
+[23/07/20 15:33:29] [cotta.py:  110]: anchor mean :  15.35%
+[23/07/20 15:33:30] [cotta.py:  110]: anchor mean :  15.49%
+[23/07/20 15:33:32] [cotta.py:  110]: anchor mean :  12.69%
+[23/07/20 15:33:33] [cotta.py:  110]: anchor mean :  13.16%
+[23/07/20 15:33:35] [cotta.py:  110]: anchor mean :  13.42%
+[23/07/20 15:33:36] [cotta.py:  110]: anchor mean :  10.54%
+[23/07/20 15:33:38] [cotta.py:  110]: anchor mean :  17.05%
+[23/07/20 15:33:39] [cotta.py:  110]: anchor mean :  13.78%
+[23/07/20 15:33:41] [cotta.py:  110]: anchor mean :  14.05%
+[23/07/20 15:33:42] [cotta.py:  110]: anchor mean :  10.78%
+[23/07/20 15:33:44] [cotta.py:  110]: anchor mean :  13.99%
+[23/07/20 15:33:45] [cotta.py:  110]: anchor mean :  14.80%
+[23/07/20 15:33:47] [cotta.py:  110]: anchor mean :  17.53%
+[23/07/20 15:33:48] [cotta.py:  110]: anchor mean :  15.67%
+[23/07/20 15:33:50] [cotta.py:  110]: anchor mean :  11.59%
+[23/07/20 15:33:51] [cotta.py:  110]: anchor mean :  17.06%
+[23/07/20 15:33:53] [cotta.py:  110]: anchor mean :  11.42%
+[23/07/20 15:33:54] [cotta.py:  110]: anchor mean :  13.91%
+[23/07/20 15:33:56] [cotta.py:  110]: anchor mean :  11.91%
+[23/07/20 15:33:57] [cotta.py:  110]: anchor mean :  13.16%
+[23/07/20 15:33:59] [cotta.py:  110]: anchor mean :  15.61%
+[23/07/20 15:34:00] [cotta.py:  110]: anchor mean :  12.14%
+[23/07/20 15:34:02] [cotta.py:  110]: anchor mean :  16.00%
+[23/07/20 15:34:03] [cotta.py:  110]: anchor mean :  14.66%
+[23/07/20 15:34:05] [cotta.py:  110]: anchor mean :  11.16%
+[23/07/20 15:34:06] [cotta.py:  110]: anchor mean :  13.09%
+[23/07/20 15:34:08] [cotta.py:  110]: anchor mean :  15.25%
+[23/07/20 15:34:09] [cotta.py:  110]: anchor mean :  14.96%
+[23/07/20 15:34:11] [cotta.py:  110]: anchor mean :  11.92%
+[23/07/20 15:34:12] [cotta.py:  110]: anchor mean :  13.85%
+[23/07/20 15:34:13] [cotta.py:  110]: anchor mean :  12.16%
+[23/07/20 15:34:15] [cotta.py:  110]: anchor mean :  12.69%
+[23/07/20 15:34:16] [cotta.py:  110]: anchor mean :  11.57%
+[23/07/20 15:34:18] [cotta.py:  110]: anchor mean :  10.58%
+[23/07/20 15:34:19] [cotta.py:  110]: anchor mean :  16.57%
+[23/07/20 15:34:21] [cotta.py:  110]: anchor mean :  15.35%
+[23/07/20 15:34:22] [cotta.py:  110]: anchor mean :  14.53%
+[23/07/20 15:34:24] [cotta.py:  110]: anchor mean :  15.06%
+[23/07/20 15:34:25] [cotta.py:  110]: anchor mean :  13.48%
+[23/07/20 15:34:27] [cotta.py:  110]: anchor mean :  17.71%
+[23/07/20 15:34:28] [cotta.py:  110]: anchor mean :  13.60%
+[23/07/20 15:34:30] [cotta.py:  110]: anchor mean :  15.67%
+[23/07/20 15:34:31] [cotta.py:  110]: anchor mean :  12.37%
+[23/07/20 15:34:33] [cotta.py:  110]: anchor mean :  15.57%
+[23/07/20 15:34:34] [cotta.py:  110]: anchor mean :  10.95%
+[23/07/20 15:34:36] [cotta.py:  110]: anchor mean :  11.82%
+[23/07/20 15:34:37] [cotta.py:  110]: anchor mean :  14.78%
+[23/07/20 15:34:39] [cotta.py:  110]: anchor mean :  16.62%
+[23/07/20 15:34:40] [cotta.py:  110]: anchor mean :  13.27%
+[23/07/20 15:34:42] [cotta.py:  110]: anchor mean :  14.16%
+[23/07/20 15:34:43] [cotta.py:  110]: anchor mean :  6.07%
+[23/07/20 15:34:46] [imagenetc.py:   60]: error % [gaussian_noise5]: 81.32%
+[23/07/20 15:34:46] [imagenetc.py:   51]: not resetting model
+[23/07/20 15:35:01] [cotta.py:  110]: anchor mean :  28.13%
+[23/07/20 15:35:02] [cotta.py:  110]: anchor mean :  26.77%
+[23/07/20 15:35:04] [cotta.py:  110]: anchor mean :  22.70%
+[23/07/20 15:35:05] [cotta.py:  110]: anchor mean :  26.64%
+[23/07/20 15:35:07] [cotta.py:  110]: anchor mean :  31.50%
+[23/07/20 15:35:08] [cotta.py:  110]: anchor mean :  31.12%
+[23/07/20 15:35:10] [cotta.py:  110]: anchor mean :  20.88%
+[23/07/20 15:35:11] [cotta.py:  110]: anchor mean :  26.43%
+[23/07/20 15:35:13] [cotta.py:  110]: anchor mean :  26.02%
+[23/07/20 15:35:14] [cotta.py:  110]: anchor mean :  29.46%
+[23/07/20 15:35:16] [cotta.py:  110]: anchor mean :  22.09%
+[23/07/20 15:35:17] [cotta.py:  110]: anchor mean :  27.55%
+[23/07/20 15:35:19] [cotta.py:  110]: anchor mean :  18.23%
+[23/07/20 15:35:20] [cotta.py:  110]: anchor mean :  25.34%
+[23/07/20 15:35:22] [cotta.py:  110]: anchor mean :  22.81%
+[23/07/20 15:35:23] [cotta.py:  110]: anchor mean :  22.79%
+[23/07/20 15:35:25] [cotta.py:  110]: anchor mean :  21.94%
+[23/07/20 15:35:26] [cotta.py:  110]: anchor mean :  23.30%
+[23/07/20 15:35:28] [cotta.py:  110]: anchor mean :  27.90%
+[23/07/20 15:35:29] [cotta.py:  110]: anchor mean :  22.42%
+[23/07/20 15:35:30] [cotta.py:  110]: anchor mean :  20.80%
+[23/07/20 15:35:32] [cotta.py:  110]: anchor mean :  23.79%
+[23/07/20 15:35:33] [cotta.py:  110]: anchor mean :  24.33%
+[23/07/20 15:35:35] [cotta.py:  110]: anchor mean :  22.50%
+[23/07/20 15:35:36] [cotta.py:  110]: anchor mean :  27.94%
+[23/07/20 15:35:38] [cotta.py:  110]: anchor mean :  19.68%
+[23/07/20 15:35:39] [cotta.py:  110]: anchor mean :  22.14%
+[23/07/20 15:35:41] [cotta.py:  110]: anchor mean :  22.21%
+[23/07/20 15:35:42] [cotta.py:  110]: anchor mean :  24.66%
+[23/07/20 15:35:44] [cotta.py:  110]: anchor mean :  19.96%
+[23/07/20 15:35:45] [cotta.py:  110]: anchor mean :  27.31%
+[23/07/20 15:35:47] [cotta.py:  110]: anchor mean :  24.34%
+[23/07/20 15:35:48] [cotta.py:  110]: anchor mean :  20.76%
+[23/07/20 15:35:50] [cotta.py:  110]: anchor mean :  27.06%
+[23/07/20 15:35:51] [cotta.py:  110]: anchor mean :  23.56%
+[23/07/20 15:35:53] [cotta.py:  110]: anchor mean :  26.25%
+[23/07/20 15:35:54] [cotta.py:  110]: anchor mean :  24.48%
+[23/07/20 15:35:56] [cotta.py:  110]: anchor mean :  19.18%
+[23/07/20 15:35:57] [cotta.py:  110]: anchor mean :  26.19%
+[23/07/20 15:35:59] [cotta.py:  110]: anchor mean :  22.29%
+[23/07/20 15:36:00] [cotta.py:  110]: anchor mean :  27.75%
+[23/07/20 15:36:02] [cotta.py:  110]: anchor mean :  28.03%
+[23/07/20 15:36:03] [cotta.py:  110]: anchor mean :  25.69%
+[23/07/20 15:36:05] [cotta.py:  110]: anchor mean :  24.98%
+[23/07/20 15:36:06] [cotta.py:  110]: anchor mean :  23.16%
+[23/07/20 15:36:08] [cotta.py:  110]: anchor mean :  22.46%
+[23/07/20 15:36:09] [cotta.py:  110]: anchor mean :  20.23%
+[23/07/20 15:36:11] [cotta.py:  110]: anchor mean :  23.36%
+[23/07/20 15:36:12] [cotta.py:  110]: anchor mean :  25.98%
+[23/07/20 15:36:14] [cotta.py:  110]: anchor mean :  24.84%
+[23/07/20 15:36:15] [cotta.py:  110]: anchor mean :  23.60%
+[23/07/20 15:36:17] [cotta.py:  110]: anchor mean :  23.19%
+[23/07/20 15:36:18] [cotta.py:  110]: anchor mean :  22.02%
+[23/07/20 15:36:20] [cotta.py:  110]: anchor mean :  21.03%
+[23/07/20 15:36:21] [cotta.py:  110]: anchor mean :  24.63%
+[23/07/20 15:36:23] [cotta.py:  110]: anchor mean :  24.86%
+[23/07/20 15:36:24] [cotta.py:  110]: anchor mean :  28.03%
+[23/07/20 15:36:26] [cotta.py:  110]: anchor mean :  20.71%
+[23/07/20 15:36:27] [cotta.py:  110]: anchor mean :  21.64%
+[23/07/20 15:36:29] [cotta.py:  110]: anchor mean :  20.96%
+[23/07/20 15:36:30] [cotta.py:  110]: anchor mean :  23.55%
+[23/07/20 15:36:32] [cotta.py:  110]: anchor mean :  18.46%
+[23/07/20 15:36:33] [cotta.py:  110]: anchor mean :  21.30%
+[23/07/20 15:36:35] [cotta.py:  110]: anchor mean :  25.82%
+[23/07/20 15:36:36] [cotta.py:  110]: anchor mean :  22.31%
+[23/07/20 15:36:38] [cotta.py:  110]: anchor mean :  21.45%
+[23/07/20 15:36:39] [cotta.py:  110]: anchor mean :  23.25%
+[23/07/20 15:36:41] [cotta.py:  110]: anchor mean :  29.55%
+[23/07/20 15:36:42] [cotta.py:  110]: anchor mean :  28.29%
+[23/07/20 15:36:44] [cotta.py:  110]: anchor mean :  22.95%
+[23/07/20 15:36:45] [cotta.py:  110]: anchor mean :  24.40%
+[23/07/20 15:36:47] [cotta.py:  110]: anchor mean :  18.70%
+[23/07/20 15:36:48] [cotta.py:  110]: anchor mean :  26.83%
+[23/07/20 15:36:50] [cotta.py:  110]: anchor mean :  25.36%
+[23/07/20 15:36:51] [cotta.py:  110]: anchor mean :  23.88%
+[23/07/20 15:36:53] [cotta.py:  110]: anchor mean :  26.64%
+[23/07/20 15:36:54] [cotta.py:  110]: anchor mean :  28.20%
+[23/07/20 15:36:56] [cotta.py:  110]: anchor mean :  21.17%
+[23/07/20 15:36:57] [cotta.py:  110]: anchor mean :  11.75%
+[23/07/20 15:36:58] [imagenetc.py:   60]: error % [motion_blur5]: 67.34%
+[23/07/20 15:36:58] [imagenetc.py:   51]: not resetting model
+[23/07/20 15:37:13] [cotta.py:  110]: anchor mean :  36.91%
+[23/07/20 15:37:15] [cotta.py:  110]: anchor mean :  35.13%
+[23/07/20 15:37:16] [cotta.py:  110]: anchor mean :  34.51%
+[23/07/20 15:37:18] [cotta.py:  110]: anchor mean :  38.17%
+[23/07/20 15:37:19] [cotta.py:  110]: anchor mean :  31.72%
+[23/07/20 15:37:21] [cotta.py:  110]: anchor mean :  36.36%
+[23/07/20 15:37:22] [cotta.py:  110]: anchor mean :  33.02%
+[23/07/20 15:37:24] [cotta.py:  110]: anchor mean :  34.94%
+[23/07/20 15:37:25] [cotta.py:  110]: anchor mean :  40.72%
+[23/07/20 15:37:27] [cotta.py:  110]: anchor mean :  39.18%
+[23/07/20 15:37:28] [cotta.py:  110]: anchor mean :  33.19%
+[23/07/20 15:37:30] [cotta.py:  110]: anchor mean :  41.90%
+[23/07/20 15:37:31] [cotta.py:  110]: anchor mean :  26.85%
+[23/07/20 15:37:33] [cotta.py:  110]: anchor mean :  33.26%
+[23/07/20 15:37:34] [cotta.py:  110]: anchor mean :  33.98%
+[23/07/20 15:37:36] [cotta.py:  110]: anchor mean :  35.68%
+[23/07/20 15:37:37] [cotta.py:  110]: anchor mean :  31.99%
+[23/07/20 15:37:39] [cotta.py:  110]: anchor mean :  31.49%
+[23/07/20 15:37:40] [cotta.py:  110]: anchor mean :  36.66%
+[23/07/20 15:37:42] [cotta.py:  110]: anchor mean :  40.39%
+[23/07/20 15:37:43] [cotta.py:  110]: anchor mean :  34.60%
+[23/07/20 15:37:45] [cotta.py:  110]: anchor mean :  38.63%
+[23/07/20 15:37:46] [cotta.py:  110]: anchor mean :  30.05%
+[23/07/20 15:37:48] [cotta.py:  110]: anchor mean :  30.91%
+[23/07/20 15:37:49] [cotta.py:  110]: anchor mean :  34.97%
+[23/07/20 15:37:51] [cotta.py:  110]: anchor mean :  34.32%
+[23/07/20 15:37:52] [cotta.py:  110]: anchor mean :  30.91%
+[23/07/20 15:37:54] [cotta.py:  110]: anchor mean :  33.35%
+[23/07/20 15:37:55] [cotta.py:  110]: anchor mean :  31.98%
+[23/07/20 15:37:57] [cotta.py:  110]: anchor mean :  35.11%
+[23/07/20 15:37:58] [cotta.py:  110]: anchor mean :  34.86%
+[23/07/20 15:38:00] [cotta.py:  110]: anchor mean :  39.38%
+[23/07/20 15:38:01] [cotta.py:  110]: anchor mean :  39.83%
+[23/07/20 15:38:03] [cotta.py:  110]: anchor mean :  30.76%
+[23/07/20 15:38:04] [cotta.py:  110]: anchor mean :  34.11%
+[23/07/20 15:38:06] [cotta.py:  110]: anchor mean :  33.13%
+[23/07/20 15:38:08] [cotta.py:  110]: anchor mean :  34.72%
+[23/07/20 15:38:09] [cotta.py:  110]: anchor mean :  25.38%
+[23/07/20 15:38:10] [cotta.py:  110]: anchor mean :  31.39%
+[23/07/20 15:38:12] [cotta.py:  110]: anchor mean :  29.65%
+[23/07/20 15:38:13] [cotta.py:  110]: anchor mean :  34.92%
+[23/07/20 15:38:15] [cotta.py:  110]: anchor mean :  34.84%
+[23/07/20 15:38:17] [cotta.py:  110]: anchor mean :  36.17%
+[23/07/20 15:38:18] [cotta.py:  110]: anchor mean :  36.98%
+[23/07/20 15:38:20] [cotta.py:  110]: anchor mean :  34.95%
+[23/07/20 15:38:21] [cotta.py:  110]: anchor mean :  32.39%
+[23/07/20 15:38:23] [cotta.py:  110]: anchor mean :  28.86%
+[23/07/20 15:38:24] [cotta.py:  110]: anchor mean :  34.09%
+[23/07/20 15:38:26] [cotta.py:  110]: anchor mean :  31.09%
+[23/07/20 15:38:27] [cotta.py:  110]: anchor mean :  32.25%
+[23/07/20 15:38:29] [cotta.py:  110]: anchor mean :  38.36%
+[23/07/20 15:38:30] [cotta.py:  110]: anchor mean :  37.08%
+[23/07/20 15:38:32] [cotta.py:  110]: anchor mean :  34.31%
+[23/07/20 15:38:33] [cotta.py:  110]: anchor mean :  30.25%
+[23/07/20 15:38:35] [cotta.py:  110]: anchor mean :  30.35%
+[23/07/20 15:38:36] [cotta.py:  110]: anchor mean :  37.89%
+[23/07/20 15:38:38] [cotta.py:  110]: anchor mean :  34.44%
+[23/07/20 15:38:39] [cotta.py:  110]: anchor mean :  33.04%
+[23/07/20 15:38:41] [cotta.py:  110]: anchor mean :  28.63%
+[23/07/20 15:38:42] [cotta.py:  110]: anchor mean :  30.65%
+[23/07/20 15:38:44] [cotta.py:  110]: anchor mean :  30.97%
+[23/07/20 15:38:45] [cotta.py:  110]: anchor mean :  26.61%
+[23/07/20 15:38:47] [cotta.py:  110]: anchor mean :  30.80%
+[23/07/20 15:38:48] [cotta.py:  110]: anchor mean :  36.45%
+[23/07/20 15:38:50] [cotta.py:  110]: anchor mean :  33.67%
+[23/07/20 15:38:51] [cotta.py:  110]: anchor mean :  32.27%
+[23/07/20 15:38:53] [cotta.py:  110]: anchor mean :  42.23%
+[23/07/20 15:38:54] [cotta.py:  110]: anchor mean :  33.42%
+[23/07/20 15:38:56] [cotta.py:  110]: anchor mean :  37.21%
+[23/07/20 15:38:57] [cotta.py:  110]: anchor mean :  36.19%
+[23/07/20 15:38:59] [cotta.py:  110]: anchor mean :  32.42%
+[23/07/20 15:39:00] [cotta.py:  110]: anchor mean :  31.55%
+[23/07/20 15:39:02] [cotta.py:  110]: anchor mean :  36.46%
+[23/07/20 15:39:03] [cotta.py:  110]: anchor mean :  38.19%
+[23/07/20 15:39:05] [cotta.py:  110]: anchor mean :  35.22%
+[23/07/20 15:39:07] [cotta.py:  110]: anchor mean :  35.15%
+[23/07/20 15:39:08] [cotta.py:  110]: anchor mean :  35.09%
+[23/07/20 15:39:10] [cotta.py:  110]: anchor mean :  34.11%
+[23/07/20 15:39:11] [cotta.py:  110]: anchor mean :  13.66%
+[23/07/20 15:39:12] [imagenetc.py:   60]: error % [zoom_blur5]: 53.52%
+[23/07/20 15:39:12] [imagenetc.py:   51]: not resetting model
+[23/07/20 15:39:27] [cotta.py:  110]: anchor mean :  15.49%
+[23/07/20 15:39:29] [cotta.py:  110]: anchor mean :  14.90%
+[23/07/20 15:39:30] [cotta.py:  110]: anchor mean :  18.48%
+[23/07/20 15:39:32] [cotta.py:  110]: anchor mean :  15.99%
+[23/07/20 15:39:33] [cotta.py:  110]: anchor mean :  18.74%
+[23/07/20 15:39:35] [cotta.py:  110]: anchor mean :  21.14%
+[23/07/20 15:39:36] [cotta.py:  110]: anchor mean :  14.49%
+[23/07/20 15:39:38] [cotta.py:  110]: anchor mean :  15.79%
+[23/07/20 15:39:39] [cotta.py:  110]: anchor mean :  19.08%
+[23/07/20 15:39:41] [cotta.py:  110]: anchor mean :  18.18%
+[23/07/20 15:39:42] [cotta.py:  110]: anchor mean :  15.70%
+[23/07/20 15:39:44] [cotta.py:  110]: anchor mean :  17.62%
+[23/07/20 15:39:45] [cotta.py:  110]: anchor mean :  12.98%
+[23/07/20 15:39:47] [cotta.py:  110]: anchor mean :  17.82%
+[23/07/20 15:39:48] [cotta.py:  110]: anchor mean :  13.92%
+[23/07/20 15:39:50] [cotta.py:  110]: anchor mean :  14.87%
+[23/07/20 15:39:51] [cotta.py:  110]: anchor mean :  13.22%
+[23/07/20 15:39:53] [cotta.py:  110]: anchor mean :  16.64%
+[23/07/20 15:39:54] [cotta.py:  110]: anchor mean :  21.81%
+[23/07/20 15:39:56] [cotta.py:  110]: anchor mean :  15.46%
+[23/07/20 15:39:57] [cotta.py:  110]: anchor mean :  17.98%
+[23/07/20 15:39:59] [cotta.py:  110]: anchor mean :  19.45%
+[23/07/20 15:40:00] [cotta.py:  110]: anchor mean :  17.21%
+[23/07/20 15:40:02] [cotta.py:  110]: anchor mean :  17.89%
+[23/07/20 15:40:03] [cotta.py:  110]: anchor mean :  17.33%
+[23/07/20 15:40:05] [cotta.py:  110]: anchor mean :  13.95%
+[23/07/20 15:40:07] [cotta.py:  110]: anchor mean :  16.01%
+[23/07/20 15:40:09] [cotta.py:  110]: anchor mean :  13.92%
+[23/07/20 15:40:11] [cotta.py:  110]: anchor mean :  14.42%
+[23/07/20 15:40:12] [cotta.py:  110]: anchor mean :  16.14%
+[23/07/20 15:40:14] [cotta.py:  110]: anchor mean :  13.47%
+[23/07/20 15:40:16] [cotta.py:  110]: anchor mean :  19.09%
+[23/07/20 15:40:18] [cotta.py:  110]: anchor mean :  16.59%
+[23/07/20 15:40:20] [cotta.py:  110]: anchor mean :  16.40%
+[23/07/20 15:40:22] [cotta.py:  110]: anchor mean :  14.13%
+[23/07/20 15:40:24] [cotta.py:  110]: anchor mean :  14.40%
+[23/07/20 15:40:26] [cotta.py:  110]: anchor mean :  17.63%
+[23/07/20 15:40:28] [cotta.py:  110]: anchor mean :  13.25%
+[23/07/20 15:40:30] [cotta.py:  110]: anchor mean :  15.33%
+[23/07/20 15:40:31] [cotta.py:  110]: anchor mean :  18.00%
+[23/07/20 15:40:33] [cotta.py:  110]: anchor mean :  14.85%
+[23/07/20 15:40:35] [cotta.py:  110]: anchor mean :  20.94%
+[23/07/20 15:40:37] [cotta.py:  110]: anchor mean :  18.24%
+[23/07/20 15:40:39] [cotta.py:  110]: anchor mean :  17.13%
+[23/07/20 15:40:41] [cotta.py:  110]: anchor mean :  17.52%
+[23/07/20 15:40:43] [cotta.py:  110]: anchor mean :  13.20%
+[23/07/20 15:40:45] [cotta.py:  110]: anchor mean :  13.88%
+[23/07/20 15:40:47] [cotta.py:  110]: anchor mean :  17.91%
+[23/07/20 15:40:49] [cotta.py:  110]: anchor mean :  16.12%
+[23/07/20 15:40:51] [cotta.py:  110]: anchor mean :  16.49%
+[23/07/20 15:40:53] [cotta.py:  110]: anchor mean :  12.75%
+[23/07/20 15:40:54] [cotta.py:  110]: anchor mean :  17.45%
+[23/07/20 15:40:56] [cotta.py:  110]: anchor mean :  12.95%
+[23/07/20 15:40:58] [cotta.py:  110]: anchor mean :  15.98%
+[23/07/20 15:41:00] [cotta.py:  110]: anchor mean :  15.78%
+[23/07/20 15:41:02] [cotta.py:  110]: anchor mean :  17.67%
+[23/07/20 15:41:04] [cotta.py:  110]: anchor mean :  18.15%
+[23/07/20 15:41:05] [cotta.py:  110]: anchor mean :  15.17%
+[23/07/20 15:41:07] [cotta.py:  110]: anchor mean :  10.12%
+[23/07/20 15:41:09] [cotta.py:  110]: anchor mean :  15.69%
+[23/07/20 15:41:11] [cotta.py:  110]: anchor mean :  16.20%
+[23/07/20 15:41:13] [cotta.py:  110]: anchor mean :  12.60%
+[23/07/20 15:41:15] [cotta.py:  110]: anchor mean :  13.53%
+[23/07/20 15:41:17] [cotta.py:  110]: anchor mean :  20.36%
+[23/07/20 15:41:19] [cotta.py:  110]: anchor mean :  16.27%
+[23/07/20 15:41:20] [cotta.py:  110]: anchor mean :  14.54%
+[23/07/20 15:41:22] [cotta.py:  110]: anchor mean :  17.07%
+[23/07/20 15:41:24] [cotta.py:  110]: anchor mean :  18.03%
+[23/07/20 15:41:26] [cotta.py:  110]: anchor mean :  13.36%
+[23/07/20 15:41:28] [cotta.py:  110]: anchor mean :  19.66%
+[23/07/20 15:41:30] [cotta.py:  110]: anchor mean :  14.87%
+[23/07/20 15:41:32] [cotta.py:  110]: anchor mean :  16.24%
+[23/07/20 15:41:33] [cotta.py:  110]: anchor mean :  17.65%
+[23/07/20 15:41:35] [cotta.py:  110]: anchor mean :  15.81%
+[23/07/20 15:41:37] [cotta.py:  110]: anchor mean :  14.50%
+[23/07/20 15:41:39] [cotta.py:  110]: anchor mean :  14.98%
+[23/07/20 15:41:40] [cotta.py:  110]: anchor mean :  15.94%
+[23/07/20 15:41:42] [cotta.py:  110]: anchor mean :  14.92%
+[23/07/20 15:41:44] [cotta.py:  110]: anchor mean :  11.50%
+[23/07/20 15:41:45] [imagenetc.py:   60]: error % [glass_blur5]: 73.22%
+[23/07/20 15:41:45] [imagenetc.py:   51]: not resetting model
+[23/07/20 15:42:04] [cotta.py:  110]: anchor mean :  16.13%
+[23/07/20 15:42:06] [cotta.py:  110]: anchor mean :  14.06%
+[23/07/20 15:42:08] [cotta.py:  110]: anchor mean :  13.77%
+[23/07/20 15:42:09] [cotta.py:  110]: anchor mean :  17.11%
+[23/07/20 15:42:11] [cotta.py:  110]: anchor mean :  16.54%
+[23/07/20 15:42:13] [cotta.py:  110]: anchor mean :  17.07%
+[23/07/20 15:42:15] [cotta.py:  110]: anchor mean :  16.91%
+[23/07/20 15:42:17] [cotta.py:  110]: anchor mean :  12.81%
+[23/07/20 15:42:19] [cotta.py:  110]: anchor mean :  17.10%
+[23/07/20 15:42:20] [cotta.py:  110]: anchor mean :  17.83%
+[23/07/20 15:42:22] [cotta.py:  110]: anchor mean :  15.85%
+[23/07/20 15:42:24] [cotta.py:  110]: anchor mean :  12.84%
+[23/07/20 15:42:26] [cotta.py:  110]: anchor mean :  12.66%
+[23/07/20 15:42:28] [cotta.py:  110]: anchor mean :  14.54%
+[23/07/20 15:42:30] [cotta.py:  110]: anchor mean :  13.41%
+[23/07/20 15:42:32] [cotta.py:  110]: anchor mean :  12.46%
+[23/07/20 15:42:34] [cotta.py:  110]: anchor mean :  13.50%
+[23/07/20 15:42:36] [cotta.py:  110]: anchor mean :  14.21%
+[23/07/20 15:42:38] [cotta.py:  110]: anchor mean :  16.37%
+[23/07/20 15:42:39] [cotta.py:  110]: anchor mean :  16.67%
+[23/07/20 15:42:41] [cotta.py:  110]: anchor mean :  12.60%
+[23/07/20 15:42:43] [cotta.py:  110]: anchor mean :  16.82%
+[23/07/20 15:42:45] [cotta.py:  110]: anchor mean :  14.51%
+[23/07/20 15:42:47] [cotta.py:  110]: anchor mean :  15.44%
+[23/07/20 15:42:48] [cotta.py:  110]: anchor mean :  16.53%
+[23/07/20 15:42:50] [cotta.py:  110]: anchor mean :  11.84%
+[23/07/20 15:42:52] [cotta.py:  110]: anchor mean :  17.39%
+[23/07/20 15:42:54] [cotta.py:  110]: anchor mean :  13.74%
+[23/07/20 15:42:56] [cotta.py:  110]: anchor mean :  18.58%
+[23/07/20 15:42:58] [cotta.py:  110]: anchor mean :  15.06%
+[23/07/20 15:43:00] [cotta.py:  110]: anchor mean :  13.49%
+[23/07/20 15:43:01] [cotta.py:  110]: anchor mean :  14.78%
+[23/07/20 15:43:03] [cotta.py:  110]: anchor mean :  13.83%
+[23/07/20 15:43:05] [cotta.py:  110]: anchor mean :  11.40%
+[23/07/20 15:43:07] [cotta.py:  110]: anchor mean :  13.75%
+[23/07/20 15:43:09] [cotta.py:  110]: anchor mean :  12.94%
+[23/07/20 15:43:11] [cotta.py:  110]: anchor mean :  14.18%
+[23/07/20 15:43:13] [cotta.py:  110]: anchor mean :  11.02%
+[23/07/20 15:43:15] [cotta.py:  110]: anchor mean :  13.83%
+[23/07/20 15:43:17] [cotta.py:  110]: anchor mean :  12.51%
+[23/07/20 15:43:19] [cotta.py:  110]: anchor mean :  16.38%
+[23/07/20 15:43:20] [cotta.py:  110]: anchor mean :  13.86%
+[23/07/20 15:43:22] [cotta.py:  110]: anchor mean :  14.59%
+[23/07/20 15:43:24] [cotta.py:  110]: anchor mean :  14.12%
+[23/07/20 15:43:26] [cotta.py:  110]: anchor mean :  15.02%
+[23/07/20 15:43:28] [cotta.py:  110]: anchor mean :  11.73%
+[23/07/20 15:43:30] [cotta.py:  110]: anchor mean :  12.25%
+[23/07/20 15:43:31] [cotta.py:  110]: anchor mean :  10.52%
+[23/07/20 15:43:33] [cotta.py:  110]: anchor mean :  14.61%
+[23/07/20 15:43:35] [cotta.py:  110]: anchor mean :  12.10%
+[23/07/20 15:43:37] [cotta.py:  110]: anchor mean :  13.91%
+[23/07/20 15:43:39] [cotta.py:  110]: anchor mean :  12.59%
+[23/07/20 15:43:41] [cotta.py:  110]: anchor mean :  12.26%
+[23/07/20 15:43:43] [cotta.py:  110]: anchor mean :  11.45%
+[23/07/20 15:43:44] [cotta.py:  110]: anchor mean :  15.94%
+[23/07/20 15:43:46] [cotta.py:  110]: anchor mean :  13.31%
+[23/07/20 15:43:48] [cotta.py:  110]: anchor mean :  12.91%
+[23/07/20 15:43:50] [cotta.py:  110]: anchor mean :  14.90%
+[23/07/20 15:43:52] [cotta.py:  110]: anchor mean :  11.74%
+[23/07/20 15:43:54] [cotta.py:  110]: anchor mean :  13.31%
+[23/07/20 15:43:56] [cotta.py:  110]: anchor mean :  14.82%
+[23/07/20 15:43:58] [cotta.py:  110]: anchor mean :  11.74%
+[23/07/20 15:43:59] [cotta.py:  110]: anchor mean :  14.69%
+[23/07/20 15:44:01] [cotta.py:  110]: anchor mean :  14.16%
+[23/07/20 15:44:03] [cotta.py:  110]: anchor mean :  13.49%
+[23/07/20 15:44:05] [cotta.py:  110]: anchor mean :  16.61%
+[23/07/20 15:44:07] [cotta.py:  110]: anchor mean :  17.77%
+[23/07/20 15:44:09] [cotta.py:  110]: anchor mean :  13.68%
+[23/07/20 15:44:11] [cotta.py:  110]: anchor mean :  14.92%
+[23/07/20 15:44:13] [cotta.py:  110]: anchor mean :  10.74%
+[23/07/20 15:44:15] [cotta.py:  110]: anchor mean :  13.54%
+[23/07/20 15:44:16] [cotta.py:  110]: anchor mean :  14.67%
+[23/07/20 15:44:18] [cotta.py:  110]: anchor mean :  15.73%
+[23/07/20 15:44:20] [cotta.py:  110]: anchor mean :  14.92%
+[23/07/20 15:44:22] [cotta.py:  110]: anchor mean :  14.59%
+[23/07/20 15:44:24] [cotta.py:  110]: anchor mean :  13.51%
+[23/07/20 15:44:26] [cotta.py:  110]: anchor mean :  18.08%
+[23/07/20 15:44:28] [cotta.py:  110]: anchor mean :  14.81%
+[23/07/20 15:44:29] [cotta.py:  110]: anchor mean :  10.23%
+[23/07/20 15:44:31] [imagenetc.py:   60]: error % [impulse_noise5]: 68.54%
+[23/07/20 15:44:31] [imagenetc.py:   51]: not resetting model
+[23/07/20 15:44:45] [cotta.py:  110]: anchor mean :  31.86%
+[23/07/20 15:44:47] [cotta.py:  110]: anchor mean :  32.39%
+[23/07/20 15:44:48] [cotta.py:  110]: anchor mean :  30.71%
+[23/07/20 15:44:50] [cotta.py:  110]: anchor mean :  31.56%
+[23/07/20 15:44:52] [cotta.py:  110]: anchor mean :  34.50%
+[23/07/20 15:44:54] [cotta.py:  110]: anchor mean :  31.77%
+[23/07/20 15:44:56] [cotta.py:  110]: anchor mean :  28.29%
+[23/07/20 15:44:58] [cotta.py:  110]: anchor mean :  26.29%
+[23/07/20 15:44:59] [cotta.py:  110]: anchor mean :  32.93%
+[23/07/20 15:45:01] [cotta.py:  110]: anchor mean :  43.06%
+[23/07/20 15:45:03] [cotta.py:  110]: anchor mean :  27.46%
+[23/07/20 15:45:05] [cotta.py:  110]: anchor mean :  31.16%
+[23/07/20 15:45:07] [cotta.py:  110]: anchor mean :  24.47%
+[23/07/20 15:45:09] [cotta.py:  110]: anchor mean :  33.05%
+[23/07/20 15:45:10] [cotta.py:  110]: anchor mean :  32.99%
+[23/07/20 15:45:12] [cotta.py:  110]: anchor mean :  29.27%
+[23/07/20 15:45:14] [cotta.py:  110]: anchor mean :  25.31%
+[23/07/20 15:45:16] [cotta.py:  110]: anchor mean :  28.12%
+[23/07/20 15:45:18] [cotta.py:  110]: anchor mean :  38.96%
+[23/07/20 15:45:20] [cotta.py:  110]: anchor mean :  36.69%
+[23/07/20 15:45:22] [cotta.py:  110]: anchor mean :  27.02%
+[23/07/20 15:45:24] [cotta.py:  110]: anchor mean :  32.33%
+[23/07/20 15:45:26] [cotta.py:  110]: anchor mean :  26.18%
+[23/07/20 15:45:27] [cotta.py:  110]: anchor mean :  24.14%
+[23/07/20 15:45:29] [cotta.py:  110]: anchor mean :  29.27%
+[23/07/20 15:45:31] [cotta.py:  110]: anchor mean :  30.49%
+[23/07/20 15:45:33] [cotta.py:  110]: anchor mean :  29.24%
+[23/07/20 15:45:35] [cotta.py:  110]: anchor mean :  28.35%
+[23/07/20 15:45:37] [cotta.py:  110]: anchor mean :  29.41%
+[23/07/20 15:45:39] [cotta.py:  110]: anchor mean :  26.47%
+[23/07/20 15:45:41] [cotta.py:  110]: anchor mean :  27.36%
+[23/07/20 15:45:43] [cotta.py:  110]: anchor mean :  34.19%
+[23/07/20 15:45:45] [cotta.py:  110]: anchor mean :  31.79%
+[23/07/20 15:45:46] [cotta.py:  110]: anchor mean :  27.74%
+[23/07/20 15:45:48] [cotta.py:  110]: anchor mean :  36.30%
+[23/07/20 15:45:50] [cotta.py:  110]: anchor mean :  25.94%
+[23/07/20 15:45:52] [cotta.py:  110]: anchor mean :  30.34%
+[23/07/20 15:45:54] [cotta.py:  110]: anchor mean :  22.23%
+[23/07/20 15:45:55] [cotta.py:  110]: anchor mean :  25.23%
+[23/07/20 15:45:57] [cotta.py:  110]: anchor mean :  33.53%
+[23/07/20 15:45:59] [cotta.py:  110]: anchor mean :  33.76%
+[23/07/20 15:46:01] [cotta.py:  110]: anchor mean :  36.37%
+[23/07/20 15:46:03] [cotta.py:  110]: anchor mean :  31.18%
+[23/07/20 15:46:05] [cotta.py:  110]: anchor mean :  31.22%
+[23/07/20 15:46:07] [cotta.py:  110]: anchor mean :  34.07%
+[23/07/20 15:46:09] [cotta.py:  110]: anchor mean :  25.87%
+[23/07/20 15:46:10] [cotta.py:  110]: anchor mean :  21.03%
+[23/07/20 15:46:12] [cotta.py:  110]: anchor mean :  39.31%
+[23/07/20 15:46:14] [cotta.py:  110]: anchor mean :  29.56%
+[23/07/20 15:46:16] [cotta.py:  110]: anchor mean :  31.30%
+[23/07/20 15:46:18] [cotta.py:  110]: anchor mean :  27.13%
+[23/07/20 15:46:20] [cotta.py:  110]: anchor mean :  30.33%
+[23/07/20 15:46:22] [cotta.py:  110]: anchor mean :  23.94%
+[23/07/20 15:46:23] [cotta.py:  110]: anchor mean :  26.49%
+[23/07/20 15:46:25] [cotta.py:  110]: anchor mean :  30.47%
+[23/07/20 15:46:27] [cotta.py:  110]: anchor mean :  29.85%
+[23/07/20 15:46:29] [cotta.py:  110]: anchor mean :  33.45%
+[23/07/20 15:46:31] [cotta.py:  110]: anchor mean :  30.71%
+[23/07/20 15:46:33] [cotta.py:  110]: anchor mean :  29.01%
+[23/07/20 15:46:35] [cotta.py:  110]: anchor mean :  25.25%
+[23/07/20 15:46:37] [cotta.py:  110]: anchor mean :  30.96%
+[23/07/20 15:46:38] [cotta.py:  110]: anchor mean :  26.53%
+[23/07/20 15:46:40] [cotta.py:  110]: anchor mean :  30.31%
+[23/07/20 15:46:42] [cotta.py:  110]: anchor mean :  28.53%
+[23/07/20 15:46:44] [cotta.py:  110]: anchor mean :  31.45%
+[23/07/20 15:46:46] [cotta.py:  110]: anchor mean :  27.66%
+[23/07/20 15:46:48] [cotta.py:  110]: anchor mean :  31.46%
+[23/07/20 15:46:50] [cotta.py:  110]: anchor mean :  30.63%
+[23/07/20 15:46:52] [cotta.py:  110]: anchor mean :  31.65%
+[23/07/20 15:46:53] [cotta.py:  110]: anchor mean :  35.16%
+[23/07/20 15:46:55] [cotta.py:  110]: anchor mean :  29.22%
+[23/07/20 15:46:57] [cotta.py:  110]: anchor mean :  27.75%
+[23/07/20 15:46:59] [cotta.py:  110]: anchor mean :  32.72%
+[23/07/20 15:47:01] [cotta.py:  110]: anchor mean :  30.30%
+[23/07/20 15:47:03] [cotta.py:  110]: anchor mean :  33.65%
+[23/07/20 15:47:05] [cotta.py:  110]: anchor mean :  37.32%
+[23/07/20 15:47:07] [cotta.py:  110]: anchor mean :  32.18%
+[23/07/20 15:47:08] [cotta.py:  110]: anchor mean :  32.61%
+[23/07/20 15:47:10] [cotta.py:  110]: anchor mean :  12.49%
+[23/07/20 15:47:12] [imagenetc.py:   60]: error % [jpeg_compression5]: 49.82%
+[23/07/20 15:47:12] [imagenetc.py:   51]: not resetting model
+[23/07/20 15:47:26] [cotta.py:  110]: anchor mean :  17.39%
+[23/07/20 15:47:28] [cotta.py:  110]: anchor mean :  15.18%
+[23/07/20 15:47:30] [cotta.py:  110]: anchor mean :  17.65%
+[23/07/20 15:47:32] [cotta.py:  110]: anchor mean :  19.15%
+[23/07/20 15:47:34] [cotta.py:  110]: anchor mean :  17.86%
+[23/07/20 15:47:36] [cotta.py:  110]: anchor mean :  20.45%
+[23/07/20 15:47:38] [cotta.py:  110]: anchor mean :  15.70%
+[23/07/20 15:47:40] [cotta.py:  110]: anchor mean :  16.54%
+[23/07/20 15:47:41] [cotta.py:  110]: anchor mean :  18.22%
+[23/07/20 15:47:43] [cotta.py:  110]: anchor mean :  19.15%
+[23/07/20 15:47:45] [cotta.py:  110]: anchor mean :  15.30%
+[23/07/20 15:47:47] [cotta.py:  110]: anchor mean :  16.25%
+[23/07/20 15:47:49] [cotta.py:  110]: anchor mean :  12.83%
+[23/07/20 15:47:51] [cotta.py:  110]: anchor mean :  12.90%
+[23/07/20 15:47:52] [cotta.py:  110]: anchor mean :  16.92%
+[23/07/20 15:47:54] [cotta.py:  110]: anchor mean :  15.31%
+[23/07/20 15:47:56] [cotta.py:  110]: anchor mean :  17.11%
+[23/07/20 15:47:58] [cotta.py:  110]: anchor mean :  16.65%
+[23/07/20 15:48:00] [cotta.py:  110]: anchor mean :  18.39%
+[23/07/20 15:48:02] [cotta.py:  110]: anchor mean :  20.38%
+[23/07/20 15:48:04] [cotta.py:  110]: anchor mean :  15.21%
+[23/07/20 15:48:05] [cotta.py:  110]: anchor mean :  17.63%
+[23/07/20 15:48:07] [cotta.py:  110]: anchor mean :  17.27%
+[23/07/20 15:48:09] [cotta.py:  110]: anchor mean :  16.30%
+[23/07/20 15:48:11] [cotta.py:  110]: anchor mean :  15.58%
+[23/07/20 15:48:13] [cotta.py:  110]: anchor mean :  14.46%
+[23/07/20 15:48:15] [cotta.py:  110]: anchor mean :  16.80%
+[23/07/20 15:48:17] [cotta.py:  110]: anchor mean :  15.46%
+[23/07/20 15:48:18] [cotta.py:  110]: anchor mean :  20.33%
+[23/07/20 15:48:20] [cotta.py:  110]: anchor mean :  14.32%
+[23/07/20 15:48:22] [cotta.py:  110]: anchor mean :  15.85%
+[23/07/20 15:48:24] [cotta.py:  110]: anchor mean :  18.03%
+[23/07/20 15:48:26] [cotta.py:  110]: anchor mean :  15.61%
+[23/07/20 15:48:28] [cotta.py:  110]: anchor mean :  14.32%
+[23/07/20 15:48:30] [cotta.py:  110]: anchor mean :  17.35%
+[23/07/20 15:48:31] [cotta.py:  110]: anchor mean :  22.09%
+[23/07/20 15:48:33] [cotta.py:  110]: anchor mean :  16.40%
+[23/07/20 15:48:35] [cotta.py:  110]: anchor mean :  10.49%
+[23/07/20 15:48:37] [cotta.py:  110]: anchor mean :  17.06%
+[23/07/20 15:48:39] [cotta.py:  110]: anchor mean :  15.75%
+[23/07/20 15:48:41] [cotta.py:  110]: anchor mean :  18.87%
+[23/07/20 15:48:43] [cotta.py:  110]: anchor mean :  19.26%
+[23/07/20 15:48:45] [cotta.py:  110]: anchor mean :  18.17%
+[23/07/20 15:48:47] [cotta.py:  110]: anchor mean :  18.95%
+[23/07/20 15:48:48] [cotta.py:  110]: anchor mean :  17.62%
+[23/07/20 15:48:50] [cotta.py:  110]: anchor mean :  17.02%
+[23/07/20 15:48:52] [cotta.py:  110]: anchor mean :  14.22%
+[23/07/20 15:48:54] [cotta.py:  110]: anchor mean :  20.73%
+[23/07/20 15:48:56] [cotta.py:  110]: anchor mean :  13.70%
+[23/07/20 15:48:58] [cotta.py:  110]: anchor mean :  21.56%
+[23/07/20 15:49:00] [cotta.py:  110]: anchor mean :  14.25%
+[23/07/20 15:49:02] [cotta.py:  110]: anchor mean :  19.40%
+[23/07/20 15:49:04] [cotta.py:  110]: anchor mean :  17.85%
+[23/07/20 15:49:06] [cotta.py:  110]: anchor mean :  15.84%
+[23/07/20 15:49:08] [cotta.py:  110]: anchor mean :  15.98%
+[23/07/20 15:49:09] [cotta.py:  110]: anchor mean :  18.58%
+[23/07/20 15:49:11] [cotta.py:  110]: anchor mean :  18.14%
+[23/07/20 15:49:13] [cotta.py:  110]: anchor mean :  16.24%
+[23/07/20 15:49:15] [cotta.py:  110]: anchor mean :  14.82%
+[23/07/20 15:49:17] [cotta.py:  110]: anchor mean :  14.93%
+[23/07/20 15:49:19] [cotta.py:  110]: anchor mean :  15.68%
+[23/07/20 15:49:21] [cotta.py:  110]: anchor mean :  13.05%
+[23/07/20 15:49:22] [cotta.py:  110]: anchor mean :  17.20%
+[23/07/20 15:49:24] [cotta.py:  110]: anchor mean :  17.36%
+[23/07/20 15:49:26] [cotta.py:  110]: anchor mean :  21.67%
+[23/07/20 15:49:28] [cotta.py:  110]: anchor mean :  19.33%
+[23/07/20 15:49:30] [cotta.py:  110]: anchor mean :  15.83%
+[23/07/20 15:49:32] [cotta.py:  110]: anchor mean :  18.02%
+[23/07/20 15:49:34] [cotta.py:  110]: anchor mean :  18.33%
+[23/07/20 15:49:36] [cotta.py:  110]: anchor mean :  19.37%
+[23/07/20 15:49:37] [cotta.py:  110]: anchor mean :  17.36%
+[23/07/20 15:49:39] [cotta.py:  110]: anchor mean :  16.36%
+[23/07/20 15:49:41] [cotta.py:  110]: anchor mean :  15.87%
+[23/07/20 15:49:43] [cotta.py:  110]: anchor mean :  15.23%
+[23/07/20 15:49:45] [cotta.py:  110]: anchor mean :  17.93%
+[23/07/20 15:49:47] [cotta.py:  110]: anchor mean :  18.49%
+[23/07/20 15:49:49] [cotta.py:  110]: anchor mean :  16.04%
+[23/07/20 15:49:51] [cotta.py:  110]: anchor mean :  15.22%
+[23/07/20 15:49:52] [cotta.py:  110]: anchor mean :  14.38%
+[23/07/20 15:49:54] [imagenetc.py:   60]: error % [defocus_blur5]: 67.98%
+[23/07/20 15:49:54] [imagenetc.py:   51]: not resetting model
+[23/07/20 15:50:10] [cotta.py:  110]: anchor mean :  40.67%
+[23/07/20 15:50:11] [cotta.py:  110]: anchor mean :  40.52%
+[23/07/20 15:50:13] [cotta.py:  110]: anchor mean :  39.49%
+[23/07/20 15:50:15] [cotta.py:  110]: anchor mean :  42.17%
+[23/07/20 15:50:17] [cotta.py:  110]: anchor mean :  45.91%
+[23/07/20 15:50:18] [cotta.py:  110]: anchor mean :  38.89%
+[23/07/20 15:50:21] [cotta.py:  110]: anchor mean :  39.03%
+[23/07/20 15:50:23] [cotta.py:  110]: anchor mean :  34.15%
+[23/07/20 15:50:24] [cotta.py:  110]: anchor mean :  36.55%
+[23/07/20 15:50:26] [cotta.py:  110]: anchor mean :  46.14%
+[23/07/20 15:50:28] [cotta.py:  110]: anchor mean :  40.10%
+[23/07/20 15:50:30] [cotta.py:  110]: anchor mean :  38.39%
+[23/07/20 15:50:32] [cotta.py:  110]: anchor mean :  31.84%
+[23/07/20 15:50:34] [cotta.py:  110]: anchor mean :  44.45%
+[23/07/20 15:50:36] [cotta.py:  110]: anchor mean :  37.74%
+[23/07/20 15:50:38] [cotta.py:  110]: anchor mean :  40.16%
+[23/07/20 15:50:39] [cotta.py:  110]: anchor mean :  37.01%
+[23/07/20 15:50:41] [cotta.py:  110]: anchor mean :  40.20%
+[23/07/20 15:50:43] [cotta.py:  110]: anchor mean :  43.08%
+[23/07/20 15:50:45] [cotta.py:  110]: anchor mean :  44.30%
+[23/07/20 15:50:47] [cotta.py:  110]: anchor mean :  44.69%
+[23/07/20 15:50:49] [cotta.py:  110]: anchor mean :  42.75%
+[23/07/20 15:50:50] [cotta.py:  110]: anchor mean :  36.55%
+[23/07/20 15:50:52] [cotta.py:  110]: anchor mean :  33.18%
+[23/07/20 15:50:54] [cotta.py:  110]: anchor mean :  40.26%
+[23/07/20 15:50:56] [cotta.py:  110]: anchor mean :  36.21%
+[23/07/20 15:50:58] [cotta.py:  110]: anchor mean :  42.33%
+[23/07/20 15:51:00] [cotta.py:  110]: anchor mean :  34.14%
+[23/07/20 15:51:02] [cotta.py:  110]: anchor mean :  34.84%
+[23/07/20 15:51:04] [cotta.py:  110]: anchor mean :  34.66%
+[23/07/20 15:51:06] [cotta.py:  110]: anchor mean :  36.77%
+[23/07/20 15:51:08] [cotta.py:  110]: anchor mean :  38.33%
+[23/07/20 15:51:09] [cotta.py:  110]: anchor mean :  49.94%
+[23/07/20 15:51:11] [cotta.py:  110]: anchor mean :  37.25%
+[23/07/20 15:51:13] [cotta.py:  110]: anchor mean :  42.28%
+[23/07/20 15:51:15] [cotta.py:  110]: anchor mean :  36.62%
+[23/07/20 15:51:17] [cotta.py:  110]: anchor mean :  31.79%
+[23/07/20 15:51:19] [cotta.py:  110]: anchor mean :  32.76%
+[23/07/20 15:51:21] [cotta.py:  110]: anchor mean :  37.73%
+[23/07/20 15:51:23] [cotta.py:  110]: anchor mean :  46.89%
+[23/07/20 15:51:24] [cotta.py:  110]: anchor mean :  42.64%
+[23/07/20 15:51:26] [cotta.py:  110]: anchor mean :  42.81%
+[23/07/20 15:51:28] [cotta.py:  110]: anchor mean :  40.09%
+[23/07/20 15:51:30] [cotta.py:  110]: anchor mean :  37.24%
+[23/07/20 15:51:32] [cotta.py:  110]: anchor mean :  38.80%
+[23/07/20 15:51:34] [cotta.py:  110]: anchor mean :  38.50%
+[23/07/20 15:51:36] [cotta.py:  110]: anchor mean :  33.52%
+[23/07/20 15:51:38] [cotta.py:  110]: anchor mean :  44.88%
+[23/07/20 15:51:40] [cotta.py:  110]: anchor mean :  36.30%
+[23/07/20 15:51:41] [cotta.py:  110]: anchor mean :  31.11%
+[23/07/20 15:51:43] [cotta.py:  110]: anchor mean :  37.64%
+[23/07/20 15:51:45] [cotta.py:  110]: anchor mean :  39.82%
+[23/07/20 15:51:47] [cotta.py:  110]: anchor mean :  32.42%
+[23/07/20 15:51:49] [cotta.py:  110]: anchor mean :  33.32%
+[23/07/20 15:51:51] [cotta.py:  110]: anchor mean :  42.98%
+[23/07/20 15:51:53] [cotta.py:  110]: anchor mean :  45.43%
+[23/07/20 15:51:55] [cotta.py:  110]: anchor mean :  43.52%
+[23/07/20 15:51:56] [cotta.py:  110]: anchor mean :  36.32%
+[23/07/20 15:51:58] [cotta.py:  110]: anchor mean :  29.92%
+[23/07/20 15:52:00] [cotta.py:  110]: anchor mean :  35.49%
+[23/07/20 15:52:02] [cotta.py:  110]: anchor mean :  37.13%
+[23/07/20 15:52:04] [cotta.py:  110]: anchor mean :  33.12%
+[23/07/20 15:52:05] [cotta.py:  110]: anchor mean :  35.90%
+[23/07/20 15:52:07] [cotta.py:  110]: anchor mean :  40.34%
+[23/07/20 15:52:09] [cotta.py:  110]: anchor mean :  35.59%
+[23/07/20 15:52:11] [cotta.py:  110]: anchor mean :  44.58%
+[23/07/20 15:52:14] [cotta.py:  110]: anchor mean :  48.46%
+[23/07/20 15:52:16] [cotta.py:  110]: anchor mean :  40.93%
+[23/07/20 15:52:18] [cotta.py:  110]: anchor mean :  38.30%
+[23/07/20 15:52:20] [cotta.py:  110]: anchor mean :  48.46%
+[23/07/20 15:52:21] [cotta.py:  110]: anchor mean :  34.28%
+[23/07/20 15:52:23] [cotta.py:  110]: anchor mean :  39.55%
+[23/07/20 15:52:25] [cotta.py:  110]: anchor mean :  41.02%
+[23/07/20 15:52:27] [cotta.py:  110]: anchor mean :  38.59%
+[23/07/20 15:52:29] [cotta.py:  110]: anchor mean :  41.61%
+[23/07/20 15:52:31] [cotta.py:  110]: anchor mean :  38.93%
+[23/07/20 15:52:33] [cotta.py:  110]: anchor mean :  41.61%
+[23/07/20 15:52:35] [cotta.py:  110]: anchor mean :  35.19%
+[23/07/20 15:52:36] [cotta.py:  110]: anchor mean :  12.98%
+[23/07/20 15:52:39] [imagenetc.py:   60]: error % [elastic_transform5]: 46.38%
+[23/07/20 15:52:39] [imagenetc.py:   51]: not resetting model
+[23/07/20 15:52:57] [cotta.py:  110]: anchor mean :  12.64%
+[23/07/20 15:52:59] [cotta.py:  110]: anchor mean :  12.72%
+[23/07/20 15:53:00] [cotta.py:  110]: anchor mean :  16.69%
+[23/07/20 15:53:02] [cotta.py:  110]: anchor mean :  19.50%
+[23/07/20 15:53:04] [cotta.py:  110]: anchor mean :  14.79%
+[23/07/20 15:53:06] [cotta.py:  110]: anchor mean :  16.57%
+[23/07/20 15:53:08] [cotta.py:  110]: anchor mean :  19.63%
+[23/07/20 15:53:10] [cotta.py:  110]: anchor mean :  12.33%
+[23/07/20 15:53:12] [cotta.py:  110]: anchor mean :  20.58%
+[23/07/20 15:53:14] [cotta.py:  110]: anchor mean :  17.46%
+[23/07/20 15:53:16] [cotta.py:  110]: anchor mean :  14.32%
+[23/07/20 15:53:17] [cotta.py:  110]: anchor mean :  14.39%
+[23/07/20 15:53:19] [cotta.py:  110]: anchor mean :  11.34%
+[23/07/20 15:53:21] [cotta.py:  110]: anchor mean :  13.97%
+[23/07/20 15:53:23] [cotta.py:  110]: anchor mean :  16.18%
+[23/07/20 15:53:25] [cotta.py:  110]: anchor mean :  17.10%
+[23/07/20 15:53:27] [cotta.py:  110]: anchor mean :  14.14%
+[23/07/20 15:53:28] [cotta.py:  110]: anchor mean :  14.46%
+[23/07/20 15:53:30] [cotta.py:  110]: anchor mean :  15.82%
+[23/07/20 15:53:32] [cotta.py:  110]: anchor mean :  15.69%
+[23/07/20 15:53:34] [cotta.py:  110]: anchor mean :  16.73%
+[23/07/20 15:53:36] [cotta.py:  110]: anchor mean :  14.68%
+[23/07/20 15:53:38] [cotta.py:  110]: anchor mean :  11.80%
+[23/07/20 15:53:40] [cotta.py:  110]: anchor mean :  11.95%
+[23/07/20 15:53:42] [cotta.py:  110]: anchor mean :  15.52%
+[23/07/20 15:53:44] [cotta.py:  110]: anchor mean :  17.82%
+[23/07/20 15:53:46] [cotta.py:  110]: anchor mean :  18.61%
+[23/07/20 15:53:48] [cotta.py:  110]: anchor mean :  12.02%
+[23/07/20 15:53:50] [cotta.py:  110]: anchor mean :  14.98%
+[23/07/20 15:53:52] [cotta.py:  110]: anchor mean :  15.08%
+[23/07/20 15:53:53] [cotta.py:  110]: anchor mean :  15.83%
+[23/07/20 15:53:55] [cotta.py:  110]: anchor mean :  11.90%
+[23/07/20 15:53:57] [cotta.py:  110]: anchor mean :  14.68%
+[23/07/20 15:53:59] [cotta.py:  110]: anchor mean :  12.61%
+[23/07/20 15:54:01] [cotta.py:  110]: anchor mean :  13.68%
+[23/07/20 15:54:03] [cotta.py:  110]: anchor mean :  14.37%
+[23/07/20 15:54:05] [cotta.py:  110]: anchor mean :  14.54%
+[23/07/20 15:54:06] [cotta.py:  110]: anchor mean :  10.88%
+[23/07/20 15:54:08] [cotta.py:  110]: anchor mean :  14.66%
+[23/07/20 15:54:10] [cotta.py:  110]: anchor mean :  15.08%
+[23/07/20 15:54:12] [cotta.py:  110]: anchor mean :  17.61%
+[23/07/20 15:54:14] [cotta.py:  110]: anchor mean :  17.00%
+[23/07/20 15:54:15] [cotta.py:  110]: anchor mean :  14.86%
+[23/07/20 15:54:17] [cotta.py:  110]: anchor mean :  12.20%
+[23/07/20 15:54:19] [cotta.py:  110]: anchor mean :  16.59%
+[23/07/20 15:54:21] [cotta.py:  110]: anchor mean :  11.43%
+[23/07/20 15:54:23] [cotta.py:  110]: anchor mean :  10.98%
+[23/07/20 15:54:25] [cotta.py:  110]: anchor mean :  13.08%
+[23/07/20 15:54:27] [cotta.py:  110]: anchor mean :  14.89%
+[23/07/20 15:54:28] [cotta.py:  110]: anchor mean :  13.76%
+[23/07/20 15:54:30] [cotta.py:  110]: anchor mean :  12.75%
+[23/07/20 15:54:32] [cotta.py:  110]: anchor mean :  16.33%
+[23/07/20 15:54:34] [cotta.py:  110]: anchor mean :  15.39%
+[23/07/20 15:54:36] [cotta.py:  110]: anchor mean :  12.53%
+[23/07/20 15:54:37] [cotta.py:  110]: anchor mean :  17.58%
+[23/07/20 15:54:39] [cotta.py:  110]: anchor mean :  13.82%
+[23/07/20 15:54:41] [cotta.py:  110]: anchor mean :  18.84%
+[23/07/20 15:54:43] [cotta.py:  110]: anchor mean :  16.65%
+[23/07/20 15:54:45] [cotta.py:  110]: anchor mean :  16.24%
+[23/07/20 15:54:47] [cotta.py:  110]: anchor mean :  12.89%
+[23/07/20 15:54:49] [cotta.py:  110]: anchor mean :  13.53%
+[23/07/20 15:54:51] [cotta.py:  110]: anchor mean :  10.34%
+[23/07/20 15:54:53] [cotta.py:  110]: anchor mean :  13.44%
+[23/07/20 15:54:55] [cotta.py:  110]: anchor mean :  18.13%
+[23/07/20 15:54:57] [cotta.py:  110]: anchor mean :  12.23%
+[23/07/20 15:54:58] [cotta.py:  110]: anchor mean :  13.80%
+[23/07/20 15:55:00] [cotta.py:  110]: anchor mean :  16.81%
+[23/07/20 15:55:02] [cotta.py:  110]: anchor mean :  17.23%
+[23/07/20 15:55:04] [cotta.py:  110]: anchor mean :  12.81%
+[23/07/20 15:55:06] [cotta.py:  110]: anchor mean :  20.05%
+[23/07/20 15:55:08] [cotta.py:  110]: anchor mean :  11.15%
+[23/07/20 15:55:10] [cotta.py:  110]: anchor mean :  16.26%
+[23/07/20 15:55:12] [cotta.py:  110]: anchor mean :  13.58%
+[23/07/20 15:55:13] [cotta.py:  110]: anchor mean :  14.84%
+[23/07/20 15:55:15] [cotta.py:  110]: anchor mean :  13.26%
+[23/07/20 15:55:17] [cotta.py:  110]: anchor mean :  15.24%
+[23/07/20 15:55:19] [cotta.py:  110]: anchor mean :  13.30%
+[23/07/20 15:55:22] [cotta.py:  110]: anchor mean :  14.40%
+[23/07/20 15:55:24] [cotta.py:  110]: anchor mean :  5.71%
+[23/07/20 15:55:27] [imagenetc.py:   60]: error % [shot_noise5]: 60.86%
+[23/07/20 15:55:27] [imagenetc.py:   51]: not resetting model
+[23/07/20 15:55:46] [cotta.py:  110]: anchor mean :  33.77%
+[23/07/20 15:55:49] [cotta.py:  110]: anchor mean :  31.90%
+[23/07/20 15:55:52] [cotta.py:  110]: anchor mean :  32.74%
+[23/07/20 15:55:55] [cotta.py:  110]: anchor mean :  35.85%
+[23/07/20 15:55:58] [cotta.py:  110]: anchor mean :  30.73%
+[23/07/20 15:56:00] [cotta.py:  110]: anchor mean :  30.39%
+[23/07/20 15:56:02] [cotta.py:  110]: anchor mean :  37.31%
+[23/07/20 15:56:05] [cotta.py:  110]: anchor mean :  29.63%
+[23/07/20 15:56:07] [cotta.py:  110]: anchor mean :  29.83%
+[23/07/20 15:56:09] [cotta.py:  110]: anchor mean :  40.07%
+[23/07/20 15:56:11] [cotta.py:  110]: anchor mean :  34.17%
+[23/07/20 15:56:14] [cotta.py:  110]: anchor mean :  33.22%
+[23/07/20 15:56:16] [cotta.py:  110]: anchor mean :  27.30%
+[23/07/20 15:56:18] [cotta.py:  110]: anchor mean :  29.17%
+[23/07/20 15:56:20] [cotta.py:  110]: anchor mean :  39.98%
+[23/07/20 15:56:22] [cotta.py:  110]: anchor mean :  27.39%
+[23/07/20 15:56:25] [cotta.py:  110]: anchor mean :  33.59%
+[23/07/20 15:56:27] [cotta.py:  110]: anchor mean :  31.07%
+[23/07/20 15:56:30] [cotta.py:  110]: anchor mean :  33.82%
+[23/07/20 15:56:32] [cotta.py:  110]: anchor mean :  39.30%
+[23/07/20 15:56:34] [cotta.py:  110]: anchor mean :  31.64%
+[23/07/20 15:56:36] [cotta.py:  110]: anchor mean :  36.01%
+[23/07/20 15:56:38] [cotta.py:  110]: anchor mean :  31.77%
+[23/07/20 15:56:41] [cotta.py:  110]: anchor mean :  26.71%
+[23/07/20 15:56:44] [cotta.py:  110]: anchor mean :  33.31%
+[23/07/20 15:56:47] [cotta.py:  110]: anchor mean :  33.00%
+[23/07/20 15:56:50] [cotta.py:  110]: anchor mean :  28.75%
+[23/07/20 15:56:52] [cotta.py:  110]: anchor mean :  32.61%
+[23/07/20 15:56:54] [cotta.py:  110]: anchor mean :  23.52%
+[23/07/20 15:56:56] [cotta.py:  110]: anchor mean :  27.04%
+[23/07/20 15:56:58] [cotta.py:  110]: anchor mean :  30.38%
+[23/07/20 15:57:01] [cotta.py:  110]: anchor mean :  32.71%
+[23/07/20 15:57:03] [cotta.py:  110]: anchor mean :  38.51%
+[23/07/20 15:57:05] [cotta.py:  110]: anchor mean :  31.99%
+[23/07/20 15:57:07] [cotta.py:  110]: anchor mean :  34.27%
+[23/07/20 15:57:09] [cotta.py:  110]: anchor mean :  28.38%
+[23/07/20 15:57:11] [cotta.py:  110]: anchor mean :  26.39%
+[23/07/20 15:57:14] [cotta.py:  110]: anchor mean :  24.93%
+[23/07/20 15:57:17] [cotta.py:  110]: anchor mean :  28.57%
+[23/07/20 15:57:19] [cotta.py:  110]: anchor mean :  31.70%
+[23/07/20 15:57:21] [cotta.py:  110]: anchor mean :  29.88%
+[23/07/20 15:57:23] [cotta.py:  110]: anchor mean :  37.70%
+[23/07/20 15:57:25] [cotta.py:  110]: anchor mean :  37.41%
+[23/07/20 15:57:27] [cotta.py:  110]: anchor mean :  32.64%
+[23/07/20 15:57:30] [cotta.py:  110]: anchor mean :  33.81%
+[23/07/20 15:57:33] [cotta.py:  110]: anchor mean :  26.76%
+[23/07/20 15:57:35] [cotta.py:  110]: anchor mean :  27.44%
+[23/07/20 15:57:37] [cotta.py:  110]: anchor mean :  33.51%
+[23/07/20 15:57:39] [cotta.py:  110]: anchor mean :  29.73%
+[23/07/20 15:57:41] [cotta.py:  110]: anchor mean :  27.72%
+[23/07/20 15:57:43] [cotta.py:  110]: anchor mean :  29.80%
+[23/07/20 15:57:46] [cotta.py:  110]: anchor mean :  31.10%
+[23/07/20 15:57:49] [cotta.py:  110]: anchor mean :  27.85%
+[23/07/20 15:57:51] [cotta.py:  110]: anchor mean :  21.35%
+[23/07/20 15:57:53] [cotta.py:  110]: anchor mean :  33.96%
+[23/07/20 15:57:55] [cotta.py:  110]: anchor mean :  34.88%
+[23/07/20 15:57:57] [cotta.py:  110]: anchor mean :  32.72%
+[23/07/20 15:57:59] [cotta.py:  110]: anchor mean :  37.71%
+[23/07/20 15:58:02] [cotta.py:  110]: anchor mean :  27.78%
+[23/07/20 15:58:05] [cotta.py:  110]: anchor mean :  27.02%
+[23/07/20 15:58:07] [cotta.py:  110]: anchor mean :  29.16%
+[23/07/20 15:58:09] [cotta.py:  110]: anchor mean :  22.90%
+[23/07/20 15:58:11] [cotta.py:  110]: anchor mean :  29.12%
+[23/07/20 15:58:13] [cotta.py:  110]: anchor mean :  29.91%
+[23/07/20 15:58:16] [cotta.py:  110]: anchor mean :  29.22%
+[23/07/20 15:58:19] [cotta.py:  110]: anchor mean :  34.89%
+[23/07/20 15:58:21] [cotta.py:  110]: anchor mean :  30.89%
+[23/07/20 15:58:23] [cotta.py:  110]: anchor mean :  30.89%
+[23/07/20 15:58:25] [cotta.py:  110]: anchor mean :  33.39%
+[23/07/20 15:58:27] [cotta.py:  110]: anchor mean :  36.15%
+[23/07/20 15:58:29] [cotta.py:  110]: anchor mean :  31.50%
+[23/07/20 15:58:32] [cotta.py:  110]: anchor mean :  37.31%
+[23/07/20 15:58:35] [cotta.py:  110]: anchor mean :  30.19%
+[23/07/20 15:58:37] [cotta.py:  110]: anchor mean :  26.91%
+[23/07/20 15:58:39] [cotta.py:  110]: anchor mean :  32.81%
+[23/07/20 15:58:41] [cotta.py:  110]: anchor mean :  30.74%
+[23/07/20 15:58:43] [cotta.py:  110]: anchor mean :  31.74%
+[23/07/20 15:58:46] [cotta.py:  110]: anchor mean :  29.52%
+[23/07/20 15:58:48] [cotta.py:  110]: anchor mean :  9.60%
+[23/07/20 15:58:51] [imagenetc.py:   60]: error % [frost5]: 55.30%
+[23/07/20 15:58:51] [imagenetc.py:   51]: not resetting model
+[23/07/20 15:59:08] [cotta.py:  110]: anchor mean :  35.17%
+[23/07/20 15:59:11] [cotta.py:  110]: anchor mean :  31.59%
+[23/07/20 15:59:13] [cotta.py:  110]: anchor mean :  30.22%
+[23/07/20 15:59:15] [cotta.py:  110]: anchor mean :  33.32%
+[23/07/20 15:59:17] [cotta.py:  110]: anchor mean :  35.17%
+[23/07/20 15:59:19] [cotta.py:  110]: anchor mean :  30.97%
+[23/07/20 15:59:21] [cotta.py:  110]: anchor mean :  39.21%
+[23/07/20 15:59:23] [cotta.py:  110]: anchor mean :  36.63%
+[23/07/20 15:59:25] [cotta.py:  110]: anchor mean :  33.47%
+[23/07/20 15:59:28] [cotta.py:  110]: anchor mean :  41.91%
+[23/07/20 15:59:30] [cotta.py:  110]: anchor mean :  28.80%
+[23/07/20 15:59:33] [cotta.py:  110]: anchor mean :  33.94%
+[23/07/20 15:59:35] [cotta.py:  110]: anchor mean :  26.36%
+[23/07/20 15:59:38] [cotta.py:  110]: anchor mean :  32.46%
+[23/07/20 15:59:40] [cotta.py:  110]: anchor mean :  29.66%
+[23/07/20 15:59:42] [cotta.py:  110]: anchor mean :  28.50%
+[23/07/20 15:59:44] [cotta.py:  110]: anchor mean :  33.77%
+[23/07/20 15:59:46] [cotta.py:  110]: anchor mean :  33.21%
+[23/07/20 15:59:48] [cotta.py:  110]: anchor mean :  33.02%
+[23/07/20 15:59:51] [cotta.py:  110]: anchor mean :  38.37%
+[23/07/20 15:59:53] [cotta.py:  110]: anchor mean :  31.07%
+[23/07/20 15:59:55] [cotta.py:  110]: anchor mean :  34.39%
+[23/07/20 15:59:57] [cotta.py:  110]: anchor mean :  34.90%
+[23/07/20 16:00:00] [cotta.py:  110]: anchor mean :  31.16%
+[23/07/20 16:00:02] [cotta.py:  110]: anchor mean :  33.09%
+[23/07/20 16:00:04] [cotta.py:  110]: anchor mean :  34.38%
+[23/07/20 16:00:06] [cotta.py:  110]: anchor mean :  37.06%
+[23/07/20 16:00:08] [cotta.py:  110]: anchor mean :  28.26%
+[23/07/20 16:00:11] [cotta.py:  110]: anchor mean :  32.21%
+[23/07/20 16:00:13] [cotta.py:  110]: anchor mean :  24.33%
+[23/07/20 16:00:15] [cotta.py:  110]: anchor mean :  27.70%
+[23/07/20 16:00:17] [cotta.py:  110]: anchor mean :  34.01%
+[23/07/20 16:00:19] [cotta.py:  110]: anchor mean :  35.75%
+[23/07/20 16:00:21] [cotta.py:  110]: anchor mean :  31.30%
+[23/07/20 16:00:24] [cotta.py:  110]: anchor mean :  41.25%
+[23/07/20 16:00:26] [cotta.py:  110]: anchor mean :  28.65%
+[23/07/20 16:00:28] [cotta.py:  110]: anchor mean :  29.96%
+[23/07/20 16:00:30] [cotta.py:  110]: anchor mean :  32.28%
+[23/07/20 16:00:32] [cotta.py:  110]: anchor mean :  35.43%
+[23/07/20 16:00:35] [cotta.py:  110]: anchor mean :  32.58%
+[23/07/20 16:00:37] [cotta.py:  110]: anchor mean :  34.34%
+[23/07/20 16:00:39] [cotta.py:  110]: anchor mean :  38.96%
+[23/07/20 16:00:41] [cotta.py:  110]: anchor mean :  33.48%
+[23/07/20 16:00:43] [cotta.py:  110]: anchor mean :  36.82%
+[23/07/20 16:00:45] [cotta.py:  110]: anchor mean :  34.16%
+[23/07/20 16:00:48] [cotta.py:  110]: anchor mean :  30.80%
+[23/07/20 16:00:51] [cotta.py:  110]: anchor mean :  30.87%
+[23/07/20 16:00:53] [cotta.py:  110]: anchor mean :  37.91%
+[23/07/20 16:00:55] [cotta.py:  110]: anchor mean :  34.20%
+[23/07/20 16:00:57] [cotta.py:  110]: anchor mean :  25.57%
+[23/07/20 16:00:59] [cotta.py:  110]: anchor mean :  35.66%
+[23/07/20 16:01:02] [cotta.py:  110]: anchor mean :  34.61%
+[23/07/20 16:01:04] [cotta.py:  110]: anchor mean :  32.57%
+[23/07/20 16:01:06] [cotta.py:  110]: anchor mean :  29.43%
+[23/07/20 16:01:08] [cotta.py:  110]: anchor mean :  39.42%
+[23/07/20 16:01:10] [cotta.py:  110]: anchor mean :  29.31%
+[23/07/20 16:01:12] [cotta.py:  110]: anchor mean :  35.21%
+[23/07/20 16:01:14] [cotta.py:  110]: anchor mean :  42.75%
+[23/07/20 16:01:16] [cotta.py:  110]: anchor mean :  31.36%
+[23/07/20 16:01:19] [cotta.py:  110]: anchor mean :  28.20%
+[23/07/20 16:01:21] [cotta.py:  110]: anchor mean :  32.29%
+[23/07/20 16:01:23] [cotta.py:  110]: anchor mean :  30.49%
+[23/07/20 16:01:26] [cotta.py:  110]: anchor mean :  30.26%
+[23/07/20 16:01:28] [cotta.py:  110]: anchor mean :  30.14%
+[23/07/20 16:01:30] [cotta.py:  110]: anchor mean :  33.88%
+[23/07/20 16:01:32] [cotta.py:  110]: anchor mean :  35.25%
+[23/07/20 16:01:34] [cotta.py:  110]: anchor mean :  36.52%
+[23/07/20 16:01:36] [cotta.py:  110]: anchor mean :  37.97%
+[23/07/20 16:01:39] [cotta.py:  110]: anchor mean :  34.17%
+[23/07/20 16:01:41] [cotta.py:  110]: anchor mean :  35.75%
+[23/07/20 16:01:43] [cotta.py:  110]: anchor mean :  27.36%
+[23/07/20 16:01:45] [cotta.py:  110]: anchor mean :  40.86%
+[23/07/20 16:01:47] [cotta.py:  110]: anchor mean :  33.42%
+[23/07/20 16:01:49] [cotta.py:  110]: anchor mean :  32.67%
+[23/07/20 16:01:52] [cotta.py:  110]: anchor mean :  37.94%
+[23/07/20 16:01:54] [cotta.py:  110]: anchor mean :  37.67%
+[23/07/20 16:01:56] [cotta.py:  110]: anchor mean :  29.77%
+[23/07/20 16:01:58] [cotta.py:  110]: anchor mean :  29.44%
+[23/07/20 16:02:00] [cotta.py:  110]: anchor mean :  10.80%
+[23/07/20 16:02:02] [imagenetc.py:   60]: error % [snow5]: 53.66%
+[23/07/20 16:02:02] [imagenetc.py:   51]: not resetting model
+[23/07/20 16:02:18] [cotta.py:  110]: anchor mean :  41.14%
+[23/07/20 16:02:20] [cotta.py:  110]: anchor mean :  40.39%
+[23/07/20 16:02:22] [cotta.py:  110]: anchor mean :  34.99%
+[23/07/20 16:02:25] [cotta.py:  110]: anchor mean :  44.78%
+[23/07/20 16:02:27] [cotta.py:  110]: anchor mean :  42.47%
+[23/07/20 16:02:29] [cotta.py:  110]: anchor mean :  39.79%
+[23/07/20 16:02:31] [cotta.py:  110]: anchor mean :  42.83%
+[23/07/20 16:02:33] [cotta.py:  110]: anchor mean :  38.15%
+[23/07/20 16:02:35] [cotta.py:  110]: anchor mean :  43.07%
+[23/07/20 16:02:38] [cotta.py:  110]: anchor mean :  48.49%
+[23/07/20 16:02:41] [cotta.py:  110]: anchor mean :  40.02%
+[23/07/20 16:02:43] [cotta.py:  110]: anchor mean :  42.86%
+[23/07/20 16:02:45] [cotta.py:  110]: anchor mean :  33.40%
+[23/07/20 16:02:47] [cotta.py:  110]: anchor mean :  40.05%
+[23/07/20 16:02:49] [cotta.py:  110]: anchor mean :  44.73%
+[23/07/20 16:02:52] [cotta.py:  110]: anchor mean :  37.49%
+[23/07/20 16:02:54] [cotta.py:  110]: anchor mean :  44.98%
+[23/07/20 16:02:56] [cotta.py:  110]: anchor mean :  41.50%
+[23/07/20 16:02:58] [cotta.py:  110]: anchor mean :  45.98%
+[23/07/20 16:03:00] [cotta.py:  110]: anchor mean :  45.96%
+[23/07/20 16:03:02] [cotta.py:  110]: anchor mean :  43.17%
+[23/07/20 16:03:05] [cotta.py:  110]: anchor mean :  40.36%
+[23/07/20 16:03:07] [cotta.py:  110]: anchor mean :  37.92%
+[23/07/20 16:03:09] [cotta.py:  110]: anchor mean :  37.53%
+[23/07/20 16:03:11] [cotta.py:  110]: anchor mean :  43.57%
+[23/07/20 16:03:13] [cotta.py:  110]: anchor mean :  42.76%
+[23/07/20 16:03:16] [cotta.py:  110]: anchor mean :  41.32%
+[23/07/20 16:03:18] [cotta.py:  110]: anchor mean :  38.98%
+[23/07/20 16:03:20] [cotta.py:  110]: anchor mean :  40.06%
+[23/07/20 16:03:22] [cotta.py:  110]: anchor mean :  40.79%
+[23/07/20 16:03:24] [cotta.py:  110]: anchor mean :  37.67%
+[23/07/20 16:03:27] [cotta.py:  110]: anchor mean :  39.81%
+[23/07/20 16:03:29] [cotta.py:  110]: anchor mean :  39.48%
+[23/07/20 16:03:31] [cotta.py:  110]: anchor mean :  42.72%
+[23/07/20 16:03:33] [cotta.py:  110]: anchor mean :  42.23%
+[23/07/20 16:03:35] [cotta.py:  110]: anchor mean :  34.78%
+[23/07/20 16:03:37] [cotta.py:  110]: anchor mean :  37.31%
+[23/07/20 16:03:40] [cotta.py:  110]: anchor mean :  41.01%
+[23/07/20 16:03:42] [cotta.py:  110]: anchor mean :  39.48%
+[23/07/20 16:03:44] [cotta.py:  110]: anchor mean :  36.98%
+[23/07/20 16:03:46] [cotta.py:  110]: anchor mean :  46.21%
+[23/07/20 16:03:48] [cotta.py:  110]: anchor mean :  44.26%
+[23/07/20 16:03:51] [cotta.py:  110]: anchor mean :  44.84%
+[23/07/20 16:03:53] [cotta.py:  110]: anchor mean :  45.17%
+[23/07/20 16:03:55] [cotta.py:  110]: anchor mean :  44.48%
+[23/07/20 16:03:57] [cotta.py:  110]: anchor mean :  35.35%
+[23/07/20 16:04:00] [cotta.py:  110]: anchor mean :  33.68%
+[23/07/20 16:04:02] [cotta.py:  110]: anchor mean :  43.87%
+[23/07/20 16:04:04] [cotta.py:  110]: anchor mean :  41.08%
+[23/07/20 16:04:07] [cotta.py:  110]: anchor mean :  32.97%
+[23/07/20 16:04:09] [cotta.py:  110]: anchor mean :  42.61%
+[23/07/20 16:04:11] [cotta.py:  110]: anchor mean :  37.55%
+[23/07/20 16:04:13] [cotta.py:  110]: anchor mean :  43.66%
+[23/07/20 16:04:16] [cotta.py:  110]: anchor mean :  36.39%
+[23/07/20 16:04:18] [cotta.py:  110]: anchor mean :  44.07%
+[23/07/20 16:04:20] [cotta.py:  110]: anchor mean :  44.49%
+[23/07/20 16:04:22] [cotta.py:  110]: anchor mean :  43.54%
+[23/07/20 16:04:24] [cotta.py:  110]: anchor mean :  50.57%
+[23/07/20 16:04:26] [cotta.py:  110]: anchor mean :  38.67%
+[23/07/20 16:04:29] [cotta.py:  110]: anchor mean :  29.96%
+[23/07/20 16:04:32] [cotta.py:  110]: anchor mean :  42.73%
+[23/07/20 16:04:35] [cotta.py:  110]: anchor mean :  35.90%
+[23/07/20 16:04:37] [cotta.py:  110]: anchor mean :  37.21%
+[23/07/20 16:04:39] [cotta.py:  110]: anchor mean :  38.39%
+[23/07/20 16:04:41] [cotta.py:  110]: anchor mean :  39.25%
+[23/07/20 16:04:43] [cotta.py:  110]: anchor mean :  40.85%
+[23/07/20 16:04:45] [cotta.py:  110]: anchor mean :  45.81%
+[23/07/20 16:04:47] [cotta.py:  110]: anchor mean :  45.25%
+[23/07/20 16:04:49] [cotta.py:  110]: anchor mean :  45.98%
+[23/07/20 16:04:51] [cotta.py:  110]: anchor mean :  42.45%
+[23/07/20 16:04:54] [cotta.py:  110]: anchor mean :  40.17%
+[23/07/20 16:04:56] [cotta.py:  110]: anchor mean :  41.49%
+[23/07/20 16:04:58] [cotta.py:  110]: anchor mean :  42.29%
+[23/07/20 16:05:01] [cotta.py:  110]: anchor mean :  44.04%
+[23/07/20 16:05:03] [cotta.py:  110]: anchor mean :  47.47%
+[23/07/20 16:05:05] [cotta.py:  110]: anchor mean :  43.96%
+[23/07/20 16:05:07] [cotta.py:  110]: anchor mean :  39.15%
+[23/07/20 16:05:09] [cotta.py:  110]: anchor mean :  38.80%
+[23/07/20 16:05:11] [cotta.py:  110]: anchor mean :  17.72%
+[23/07/20 16:05:12] [imagenetc.py:   60]: error % [fog5]: 45.96%
+[23/07/20 16:05:12] [imagenetc.py:   51]: not resetting model
+[23/07/20 16:05:27] [cotta.py:  110]: anchor mean :  26.24%
+[23/07/20 16:05:29] [cotta.py:  110]: anchor mean :  20.28%
+[23/07/20 16:05:31] [cotta.py:  110]: anchor mean :  19.57%
+[23/07/20 16:05:33] [cotta.py:  110]: anchor mean :  17.72%
+[23/07/20 16:05:35] [cotta.py:  110]: anchor mean :  19.80%
+[23/07/20 16:05:37] [cotta.py:  110]: anchor mean :  21.64%
+[23/07/20 16:05:40] [cotta.py:  110]: anchor mean :  19.24%
+[23/07/20 16:05:42] [cotta.py:  110]: anchor mean :  17.78%
+[23/07/20 16:05:45] [cotta.py:  110]: anchor mean :  21.61%
+[23/07/20 16:05:47] [cotta.py:  110]: anchor mean :  28.77%
+[23/07/20 16:05:49] [cotta.py:  110]: anchor mean :  18.08%
+[23/07/20 16:05:51] [cotta.py:  110]: anchor mean :  19.79%
+[23/07/20 16:05:53] [cotta.py:  110]: anchor mean :  17.14%
+[23/07/20 16:05:54] [cotta.py:  110]: anchor mean :  17.74%
+[23/07/20 16:05:56] [cotta.py:  110]: anchor mean :  23.95%
+[23/07/20 16:05:58] [cotta.py:  110]: anchor mean :  20.52%
+[23/07/20 16:06:00] [cotta.py:  110]: anchor mean :  22.33%
+[23/07/20 16:06:02] [cotta.py:  110]: anchor mean :  21.99%
+[23/07/20 16:06:03] [cotta.py:  110]: anchor mean :  25.22%
+[23/07/20 16:06:06] [cotta.py:  110]: anchor mean :  23.15%
+[23/07/20 16:06:07] [cotta.py:  110]: anchor mean :  17.99%
+[23/07/20 16:06:09] [cotta.py:  110]: anchor mean :  18.60%
+[23/07/20 16:06:12] [cotta.py:  110]: anchor mean :  20.01%
+[23/07/20 16:06:13] [cotta.py:  110]: anchor mean :  19.54%
+[23/07/20 16:06:15] [cotta.py:  110]: anchor mean :  18.51%
+[23/07/20 16:06:16] [cotta.py:  110]: anchor mean :  21.61%
+[23/07/20 16:06:18] [cotta.py:  110]: anchor mean :  18.01%
+[23/07/20 16:06:19] [cotta.py:  110]: anchor mean :  19.59%
+[23/07/20 16:06:21] [cotta.py:  110]: anchor mean :  20.95%
+[23/07/20 16:06:22] [cotta.py:  110]: anchor mean :  19.77%
+[23/07/20 16:06:24] [cotta.py:  110]: anchor mean :  20.79%
+[23/07/20 16:06:25] [cotta.py:  110]: anchor mean :  17.32%
+[23/07/20 16:06:27] [cotta.py:  110]: anchor mean :  18.23%
+[23/07/20 16:06:28] [cotta.py:  110]: anchor mean :  20.99%
+[23/07/20 16:06:30] [cotta.py:  110]: anchor mean :  19.14%
+[23/07/20 16:06:32] [cotta.py:  110]: anchor mean :  19.51%
+[23/07/20 16:06:33] [cotta.py:  110]: anchor mean :  20.53%
+[23/07/20 16:06:35] [cotta.py:  110]: anchor mean :  21.13%
+[23/07/20 16:06:37] [cotta.py:  110]: anchor mean :  18.50%
+[23/07/20 16:06:39] [cotta.py:  110]: anchor mean :  19.08%
+[23/07/20 16:06:41] [cotta.py:  110]: anchor mean :  23.36%
+[23/07/20 16:06:43] [cotta.py:  110]: anchor mean :  20.11%
+[23/07/20 16:06:45] [cotta.py:  110]: anchor mean :  23.96%
+[23/07/20 16:06:46] [cotta.py:  110]: anchor mean :  18.85%
+[23/07/20 16:06:48] [cotta.py:  110]: anchor mean :  17.96%
+[23/07/20 16:06:50] [cotta.py:  110]: anchor mean :  20.37%
+[23/07/20 16:06:52] [cotta.py:  110]: anchor mean :  18.12%
+[23/07/20 16:06:54] [cotta.py:  110]: anchor mean :  22.72%
+[23/07/20 16:06:56] [cotta.py:  110]: anchor mean :  22.11%
+[23/07/20 16:06:58] [cotta.py:  110]: anchor mean :  19.31%
+[23/07/20 16:07:00] [cotta.py:  110]: anchor mean :  18.75%
+[23/07/20 16:07:02] [cotta.py:  110]: anchor mean :  17.90%
+[23/07/20 16:07:04] [cotta.py:  110]: anchor mean :  18.27%
+[23/07/20 16:07:06] [cotta.py:  110]: anchor mean :  19.32%
+[23/07/20 16:07:08] [cotta.py:  110]: anchor mean :  25.30%
+[23/07/20 16:07:10] [cotta.py:  110]: anchor mean :  18.53%
+[23/07/20 16:07:12] [cotta.py:  110]: anchor mean :  21.43%
+[23/07/20 16:07:14] [cotta.py:  110]: anchor mean :  27.70%
+[23/07/20 16:07:16] [cotta.py:  110]: anchor mean :  16.70%
+[23/07/20 16:07:18] [cotta.py:  110]: anchor mean :  20.37%
+[23/07/20 16:07:20] [cotta.py:  110]: anchor mean :  21.09%
+[23/07/20 16:07:22] [cotta.py:  110]: anchor mean :  19.10%
+[23/07/20 16:07:24] [cotta.py:  110]: anchor mean :  21.65%
+[23/07/20 16:07:26] [cotta.py:  110]: anchor mean :  20.51%
+[23/07/20 16:07:28] [cotta.py:  110]: anchor mean :  18.93%
+[23/07/20 16:07:30] [cotta.py:  110]: anchor mean :  19.60%
+[23/07/20 16:07:32] [cotta.py:  110]: anchor mean :  21.88%
+[23/07/20 16:07:34] [cotta.py:  110]: anchor mean :  21.63%
+[23/07/20 16:07:36] [cotta.py:  110]: anchor mean :  19.83%
+[23/07/20 16:07:38] [cotta.py:  110]: anchor mean :  19.36%
+[23/07/20 16:07:40] [cotta.py:  110]: anchor mean :  16.04%
+[23/07/20 16:07:42] [cotta.py:  110]: anchor mean :  21.83%
+[23/07/20 16:07:43] [cotta.py:  110]: anchor mean :  19.84%
+[23/07/20 16:07:45] [cotta.py:  110]: anchor mean :  19.99%
+[23/07/20 16:07:48] [cotta.py:  110]: anchor mean :  26.08%
+[23/07/20 16:07:50] [cotta.py:  110]: anchor mean :  21.37%
+[23/07/20 16:07:51] [cotta.py:  110]: anchor mean :  22.50%
+[23/07/20 16:07:53] [cotta.py:  110]: anchor mean :  19.74%
+[23/07/20 16:07:55] [cotta.py:  110]: anchor mean :  12.21%
+[23/07/20 16:07:57] [imagenetc.py:   60]: error % [contrast5]: 60.36%
+[23/07/20 16:07:57] [imagenetc.py:   62]: mean_error % :  58.15%
