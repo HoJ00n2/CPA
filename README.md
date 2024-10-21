@@ -1,2 +1,3 @@
 # CPA
-석사논문
+
+## accepted for publication in the journal Pattern Recognition Letters.
